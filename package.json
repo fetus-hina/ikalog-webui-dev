@@ -1,0 +1,28 @@
+{
+  "name": "ikalog-webui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {},
+  "author": {
+    "name": "Takeshi HASEGAWA",
+    "url": "https://github.com/hasegaw"
+  },
+  "contributors": [
+    {
+      "name": "AIZAWA Hina",
+      "url": "https://github.com/fetus-hina"
+    }
+  ],
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-loader": "^6.2.8",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "bootstrap": "^4.0.0-alpha.5",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "webpack": "^1.13.3"
+  }
+}
