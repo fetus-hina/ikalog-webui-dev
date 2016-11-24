@@ -4,7 +4,8 @@
   "description": "",
   "main": "",
   "scripts": {
-    "build": "webpack -p"
+    "build": "webpack -d",
+    "watch": "webpack -d --watch"
   },
   "author": {
     "name": "Takeshi HASEGAWA",
