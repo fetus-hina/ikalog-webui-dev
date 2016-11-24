@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "",
-  "scripts": {},
+  "scripts": {
+    "build": "webpack -p"
+  },
   "author": {
     "name": "Takeshi HASEGAWA",
     "url": "https://github.com/hasegaw"
@@ -21,8 +23,11 @@
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "bootstrap": "^4.0.0-alpha.5",
+    "css-loader": "^0.26.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.3"
   }
 }
