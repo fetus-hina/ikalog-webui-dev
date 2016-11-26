@@ -1,4 +1,4 @@
-/*!
+/*
  *  IkaLog
  *  ======
  *
@@ -18,13 +18,11 @@
  *  limitations under the License.
  */
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './views/App';
-import { initBootstrap } from './bootstrap';
-
-initBootstrap();
-
-window.React = React;
-
-ReactDOM.render(<App />, document.getElementById('app-root'));
+export function initBootstrap() {
+    window.jQuery = require('jquery/dist/jquery.js');
+    window.$ = window.jQuery;
+    window.Tether = require('tether/dist/js/tether.js');
+    
+    require('bootstrap/dist/css/bootstrap.css');
+    require('bootstrap/dist/js/bootstrap.js');
+};

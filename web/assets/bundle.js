@@ -57,37 +57,37 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _App = __webpack_require__(/*! ./app/App */ 178);
+	var _App = __webpack_require__(/*! ./views/App */ 178);
 	
 	var _App2 = _interopRequireDefault(_App);
 	
+	var _bootstrap = __webpack_require__(/*! ./bootstrap */ 183);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// Bootstrap requires jQuery and Tether
-	window.$ = window.jQuery = __webpack_require__(/*! jquery/dist/jquery.js */ 181); /*!
-	                                                              *  IkaLog
-	                                                              *  ======
-	                                                              *
-	                                                              *  Copyright (C) 2015 Takeshi HASEGAWA
-	                                                              *  Copyright (C) 2016 AIZAWA Hina
-	                                                              *  
-	                                                              *  Licensed under the Apache License, Version 2.0 (the "License");
-	                                                              *  you may not use this file except in compliance with the License.
-	                                                              *  You may obtain a copy of the License at
-	                                                              *  
-	                                                              *      http://www.apache.org/licenses/LICENSE-2.0
-	                                                              *  
-	                                                              *  Unless required by applicable law or agreed to in writing, software
-	                                                              *  distributed under the License is distributed on an "AS IS" BASIS,
-	                                                              *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	                                                              *  See the License for the specific language governing permissions and
-	                                                              *  limitations under the License.
-	                                                              */
+	/*!
+	 *  IkaLog
+	 *  ======
+	 *
+	 *  Copyright (C) 2015 Takeshi HASEGAWA
+	 *  Copyright (C) 2016 AIZAWA Hina
+	 *  
+	 *  Licensed under the Apache License, Version 2.0 (the "License");
+	 *  you may not use this file except in compliance with the License.
+	 *  You may obtain a copy of the License at
+	 *  
+	 *      http://www.apache.org/licenses/LICENSE-2.0
+	 *  
+	 *  Unless required by applicable law or agreed to in writing, software
+	 *  distributed under the License is distributed on an "AS IS" BASIS,
+	 *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 *  See the License for the specific language governing permissions and
+	 *  limitations under the License.
+	 */
 	
-	window.Tether = __webpack_require__(/*! tether/dist/js/tether.js */ 182);
+	(0, _bootstrap.initBootstrap)();
 	
-	__webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ 183);
-	__webpack_require__(/*! bootstrap/dist/js/bootstrap.js */ 187);
+	window.React = _react2.default;
 	
 	_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('app-root'));
 
@@ -22031,9 +22031,9 @@
 
 /***/ },
 /* 178 */
-/*!************************!*\
-  !*** ./src/app/App.js ***!
-  \************************/
+/*!**************************!*\
+  !*** ./src/views/App.js ***!
+  \**************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22062,7 +22062,25 @@
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  IkaLog
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  ======
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  Copyright (C) 2015 Takeshi HASEGAWA
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  Copyright (C) 2016 AIZAWA Hina
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  Licensed under the Apache License, Version 2.0 (the "License");
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  you may not use this file except in compliance with the License.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  You may obtain a copy of the License at
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *      http://www.apache.org/licenses/LICENSE-2.0
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  Unless required by applicable law or agreed to in writing, software
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  distributed under the License is distributed on an "AS IS" BASIS,
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  See the License for the specific language governing permissions and
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  limitations under the License.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
 	var App = function (_Component) {
 	  _inherits(App, _Component);
@@ -22092,9 +22110,9 @@
 
 /***/ },
 /* 179 */
-/*!***************************!*\
-  !*** ./src/app/Header.js ***!
-  \***************************/
+/*!*****************************!*\
+  !*** ./src/views/Header.js ***!
+  \*****************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22115,7 +22133,25 @@
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  IkaLog
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  ======
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  Copyright (C) 2015 Takeshi HASEGAWA
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  Copyright (C) 2016 AIZAWA Hina
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  Licensed under the Apache License, Version 2.0 (the "License");
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  you may not use this file except in compliance with the License.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  You may obtain a copy of the License at
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *      http://www.apache.org/licenses/LICENSE-2.0
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  Unless required by applicable law or agreed to in writing, software
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  distributed under the License is distributed on an "AS IS" BASIS,
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  See the License for the specific language governing permissions and
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  limitations under the License.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
 	var Logo = function (_Component) {
 	  _inherits(Logo, _Component);
@@ -22137,8 +22173,31 @@
 	  return Logo;
 	}(_react.Component);
 	
-	var Nav = function (_Component2) {
-	  _inherits(Nav, _Component2);
+	var NavLang = function (_Component2) {
+	  _inherits(NavLang, _Component2);
+	
+	  function NavLang() {
+	    _classCallCheck(this, NavLang);
+	
+	    return _possibleConstructorReturn(this, (NavLang.__proto__ || Object.getPrototypeOf(NavLang)).apply(this, arguments));
+	  }
+	
+	  _createClass(NavLang, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'a',
+	        { className: 'dropdown-item', href: '#', 'data-lang': this.props.lang },
+	        this.props.name
+	      );
+	    }
+	  }]);
+	
+	  return NavLang;
+	}(_react.Component);
+	
+	var Nav = function (_Component3) {
+	  _inherits(Nav, _Component3);
 	
 	  function Nav() {
 	    _classCallCheck(this, Nav);
@@ -22158,26 +22217,13 @@
 	          _react2.default.createElement(
 	            'a',
 	            { className: 'nav-link dropdown-toggle', href: '#', id: 'nav-lang', 'data-toggle': 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
-	            'Language'
+	            'UI Language'
 	          ),
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'dropdown-menu', 'aria-labelledby': 'nav-lang' },
-	            _react2.default.createElement(
-	              'a',
-	              { className: 'dropdown-item', href: '#' },
-	              '\u65E5\u672C\u8A9E'
-	            ),
-	            _react2.default.createElement(
-	              'a',
-	              { className: 'dropdown-item', href: '#' },
-	              'English (North America)'
-	            ),
-	            _react2.default.createElement(
-	              'a',
-	              { className: 'dropdown-item', href: '#' },
-	              'English (Europe)'
-	            )
+	            _react2.default.createElement(NavLang, { lang: 'ja', name: '\u65E5\u672C\u8A9E' }),
+	            _react2.default.createElement(NavLang, { lang: 'en', name: 'English' })
 	          )
 	        )
 	      );
@@ -22187,8 +22233,8 @@
 	  return Nav;
 	}(_react.Component);
 	
-	var Header = function (_Component3) {
-	  _inherits(Header, _Component3);
+	var Header = function (_Component4) {
+	  _inherits(Header, _Component4);
 	
 	  function Header() {
 	    _classCallCheck(this, Header);
@@ -22228,9 +22274,74 @@
 
 /***/ },
 /* 180 */
-/*!****************************!*\
-  !*** ./src/app/Content.js ***!
-  \****************************/
+/*!******************************!*\
+  !*** ./src/views/Content.js ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Sidebar = __webpack_require__(/*! ./Sidebar */ 181);
+	
+	var _Sidebar2 = _interopRequireDefault(_Sidebar);
+	
+	var _MainContent = __webpack_require__(/*! ./MainContent */ 182);
+	
+	var _MainContent2 = _interopRequireDefault(_MainContent);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Content = function (_Component) {
+	  _inherits(Content, _Component);
+	
+	  function Content() {
+	    _classCallCheck(this, Content);
+	
+	    return _possibleConstructorReturn(this, (Content.__proto__ || Object.getPrototypeOf(Content)).apply(this, arguments));
+	  }
+	
+	  _createClass(Content, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'container mt-3' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement(_Sidebar2.default, { className: 'col-xs-12 col-sm-3' }),
+	          _react2.default.createElement(_MainContent2.default, { className: 'col-xs-12 col-sm-9' })
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Content;
+	}(_react.Component);
+	
+	exports.default = Content;
+
+/***/ },
+/* 181 */
+/*!******************************!*\
+  !*** ./src/views/Sidebar.js ***!
+  \******************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22251,39 +22362,192 @@
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  IkaLog
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  ======
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  Copyright (C) 2015 Takeshi HASEGAWA
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  Copyright (C) 2016 AIZAWA Hina
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  Licensed under the Apache License, Version 2.0 (the "License");
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  you may not use this file except in compliance with the License.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  You may obtain a copy of the License at
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *      http://www.apache.org/licenses/LICENSE-2.0
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  Unless required by applicable law or agreed to in writing, software
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  distributed under the License is distributed on an "AS IS" BASIS,
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  See the License for the specific language governing permissions and
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  limitations under the License.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
 	
-	var Content = function (_Component) {
-	  _inherits(Content, _Component);
+	var Sidebar = function (_Component) {
+	  _inherits(Sidebar, _Component);
 	
-	  function Content() {
-	    _classCallCheck(this, Content);
+	  function Sidebar() {
+	    _classCallCheck(this, Sidebar);
 	
-	    return _possibleConstructorReturn(this, (Content.__proto__ || Object.getPrototypeOf(Content)).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).apply(this, arguments));
 	  }
 	
-	  _createClass(Content, [{
+	  _createClass(Sidebar, [{
 	    key: "render",
 	    value: function render() {
 	      return _react2.default.createElement(
 	        "div",
-	        { className: "container" },
+	        { className: this.props.className },
 	        _react2.default.createElement(
-	          "h1",
-	          null,
-	          "Hello, world"
+	          "div",
+	          { className: "card" },
+	          _react2.default.createElement(
+	            "div",
+	            { className: "card-header" },
+	            "Menu"
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "card-block" },
+	            _react2.default.createElement(
+	              "a",
+	              { href: "#", className: "btn btn-secondary btn-block", onClick: "" },
+	              "Preview"
+	            ),
+	            _react2.default.createElement(
+	              "a",
+	              { href: "#", className: "btn btn-secondary btn-block", onClick: "" },
+	              "Video Input"
+	            ),
+	            _react2.default.createElement(
+	              "a",
+	              { href: "#", className: "btn btn-secondary btn-block", onClick: "" },
+	              "Plugins"
+	            )
+	          )
 	        )
 	      );
 	    }
 	  }]);
 	
-	  return Content;
+	  return Sidebar;
 	}(_react.Component);
 	
-	exports.default = Content;
+	exports.default = Sidebar;
 
 /***/ },
-/* 181 */
+/* 182 */
+/*!**********************************!*\
+  !*** ./src/views/MainContent.js ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /*
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  IkaLog
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  ======
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  Copyright (C) 2015 Takeshi HASEGAWA
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  Copyright (C) 2016 AIZAWA Hina
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  Licensed under the Apache License, Version 2.0 (the "License");
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  you may not use this file except in compliance with the License.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  You may obtain a copy of the License at
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *      http://www.apache.org/licenses/LICENSE-2.0
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  Unless required by applicable law or agreed to in writing, software
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  distributed under the License is distributed on an "AS IS" BASIS,
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  See the License for the specific language governing permissions and
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                *  limitations under the License.
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+	
+	var MainContent = function (_Component) {
+	  _inherits(MainContent, _Component);
+	
+	  function MainContent() {
+	    _classCallCheck(this, MainContent);
+	
+	    return _possibleConstructorReturn(this, (MainContent.__proto__ || Object.getPrototypeOf(MainContent)).apply(this, arguments));
+	  }
+	
+	  _createClass(MainContent, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        { className: this.props.className, id: "main" },
+	        "content"
+	      );
+	    }
+	  }]);
+	
+	  return MainContent;
+	}(_react.Component);
+	
+	exports.default = MainContent;
+
+/***/ },
+/* 183 */
+/*!**************************!*\
+  !*** ./src/bootstrap.js ***!
+  \**************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.initBootstrap = initBootstrap;
+	/*
+	 *  IkaLog
+	 *  ======
+	 *
+	 *  Copyright (C) 2015 Takeshi HASEGAWA
+	 *  Copyright (C) 2016 AIZAWA Hina
+	 *  
+	 *  Licensed under the Apache License, Version 2.0 (the "License");
+	 *  you may not use this file except in compliance with the License.
+	 *  You may obtain a copy of the License at
+	 *  
+	 *      http://www.apache.org/licenses/LICENSE-2.0
+	 *  
+	 *  Unless required by applicable law or agreed to in writing, software
+	 *  distributed under the License is distributed on an "AS IS" BASIS,
+	 *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 *  See the License for the specific language governing permissions and
+	 *  limitations under the License.
+	 */
+	
+	function initBootstrap() {
+	  window.jQuery = __webpack_require__(/*! jquery/dist/jquery.js */ 184);
+	  window.$ = window.jQuery;
+	  window.Tether = __webpack_require__(/*! tether/dist/js/tether.js */ 185);
+	
+	  __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ 186);
+	  __webpack_require__(/*! bootstrap/dist/js/bootstrap.js */ 190);
+	};
+
+/***/ },
+/* 184 */
 /*!*********************************!*\
   !*** ./~/jquery/dist/jquery.js ***!
   \*********************************/
@@ -32512,7 +32776,7 @@
 
 
 /***/ },
-/* 182 */
+/* 185 */
 /*!************************************!*\
   !*** ./~/tether/dist/js/tether.js ***!
   \************************************/
@@ -34328,7 +34592,7 @@
 
 
 /***/ },
-/* 183 */
+/* 186 */
 /*!********************************************!*\
   !*** ./~/bootstrap/dist/css/bootstrap.css ***!
   \********************************************/
@@ -34337,10 +34601,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../../css-loader!./bootstrap.css */ 184);
+	var content = __webpack_require__(/*! !./../../../css-loader!./bootstrap.css */ 187);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../../style-loader/addStyles.js */ 186)(content, {});
+	var update = __webpack_require__(/*! ./../../../style-loader/addStyles.js */ 189)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -34357,13 +34621,13 @@
 	}
 
 /***/ },
-/* 184 */
+/* 187 */
 /*!***********************************************************!*\
   !*** ./~/css-loader!./~/bootstrap/dist/css/bootstrap.css ***!
   \***********************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../../css-loader/lib/css-base.js */ 185)();
+	exports = module.exports = __webpack_require__(/*! ./../../../css-loader/lib/css-base.js */ 188)();
 	// imports
 	
 	
@@ -34374,7 +34638,7 @@
 
 
 /***/ },
-/* 185 */
+/* 188 */
 /*!**************************************!*\
   !*** ./~/css-loader/lib/css-base.js ***!
   \**************************************/
@@ -34433,7 +34697,7 @@
 
 
 /***/ },
-/* 186 */
+/* 189 */
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
@@ -34688,7 +34952,7 @@
 
 
 /***/ },
-/* 187 */
+/* 190 */
 /*!******************************************!*\
   !*** ./~/bootstrap/dist/js/bootstrap.js ***!
   \******************************************/

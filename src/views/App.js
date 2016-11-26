@@ -1,4 +1,4 @@
-/*!
+/*
  *  IkaLog
  *  ======
  *
@@ -18,13 +18,17 @@
  *  limitations under the License.
  */
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './views/App';
-import { initBootstrap } from './bootstrap';
+import React, { Component } from 'react'
+import Header from './Header' 
+import Content from './Content'
 
-initBootstrap();
-
-window.React = React;
-
-ReactDOM.render(<App />, document.getElementById('app-root'));
+export default class App extends Component {
+  render() {
+    return (
+      <div>
+        <Header/>
+        <Content/>
+      </div>
+    );
+  }
+}

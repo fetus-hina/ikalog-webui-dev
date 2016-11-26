@@ -1,4 +1,4 @@
-/*!
+/*
  *  IkaLog
  *  ======
  *
@@ -18,13 +18,14 @@
  *  limitations under the License.
  */
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './views/App';
-import { initBootstrap } from './bootstrap';
+import React, { Component } from 'react'
 
-initBootstrap();
-
-window.React = React;
-
-ReactDOM.render(<App />, document.getElementById('app-root'));
+export default class MainContent extends Component {
+  render() {
+    return (
+      <div className={this.props.className} id="main">
+        content
+      </div>
+    );
+  }
+}
