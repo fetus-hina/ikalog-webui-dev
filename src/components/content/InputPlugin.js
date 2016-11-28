@@ -29,20 +29,22 @@ const t = text => window.i18n.t(text, {ns: 'input'});
 export default class InputPlugin extends Component {
   render() {
     return (
-      <div>
-        <h1>
+      <div className="card">
+        <h1 className="card-header">
           {t('Video Input')}
         </h1>
-        <fieldset>
-          <legend>
-            {t('Select input source')}
-          </legend>
-          <Amarec {...this.props} />
-          <DirectShow {...this.props} />
-          <OpenCV {...this.props} />
-          <Capture {...this.props} />
-          <File {...this.props} />
-        </fieldset>
+        <div className="card-block">
+          <fieldset>
+            <legend>
+              {t('Select input source')}
+            </legend>
+            <Amarec {...this.props} />
+            <DirectShow {...this.props} />
+            <OpenCV {...this.props} />
+            <Capture {...this.props} />
+            <File {...this.props} />
+          </fieldset>
+        </div>
       </div>
     );
   }

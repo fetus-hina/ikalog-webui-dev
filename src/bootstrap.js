@@ -58,3 +58,7 @@ export function initI18Next(defaultLang) {
       });
     return i18next;
 };
+
+export function initAppStyle() {
+    require('./index.scss');
+};

@@ -19,6 +19,7 @@ module.exports = {
           presets: ['react', 'latest']
         }
       },
+      { test: /\.scss$/, loaders: ['style', 'css', 'sass' ]},
       { test: /\.css$/, loader: 'style-loader!css-loader' },
       { test: /\.svg/, loader: 'url-loader?mimetype=image/svg+xml' },
       { test: /\.eot/, loader: 'url-loader?mimetype=application/vnd.ms-fontobject' },

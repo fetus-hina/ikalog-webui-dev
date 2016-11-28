@@ -58,7 +58,7 @@ export default class GameLangBox extends Component {
             <Button text="English (EU)" target="en_EU" {...this.props} />
           </div>
           <p className="mb-0">
-            {t('Needs restart IkaLog after Apply.')}
+            {t('Needs restart IkaLog after Apply')}
           </p>
         </div>
       </div>
