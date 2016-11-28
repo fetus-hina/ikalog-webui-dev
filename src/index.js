@@ -42,11 +42,15 @@ const app = new App({
       lang: 'unknown',
       content: 'preview',
     },
+    game: {
+      lang: 'ja', // FIXME
+    },
     plugins: {
       input: {
         driver: 'amarec',
         device: null,
         deinterlace: false,
+        devices: [],
       },
       output: {
       },

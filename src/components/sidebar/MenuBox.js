@@ -21,6 +21,8 @@
 import React from 'react';
 import { Component } from 'flumpt';
 
+const t = text => window.i18n.t(text, {ns: 'sidebar'});
+
 class Button extends Component {
   constructor(props) {
     super(props);
@@ -29,10 +31,11 @@ class Button extends Component {
 
   render() {
     const selected = this.props.target === this.props.chrome.content;
-    const classes = 'btn btn-block ' + (selected ? 'btn-primary' : 'btn-secondary');
+    const classes = 'btn ' + (selected ? 'btn-info active' : 'btn-secondary');
     return (
       <button type="button" className={classes} onClick={this._onClick}>
-        {window.i18n.t(this.props.text, {ns: 'sidebar'})}
+        {t(this.props.text)}
+        <span className="fa fa-fw fa-angle-right" />
       </button>
     );
   }
@@ -47,12 +50,18 @@ export default class MenuBox extends Component {
     return (
       <div className="card">
         <div className="card-header">
-          {window.i18n.t('Menu', {ns:'sidebar'})}
+          {t('Menu')}
         </div>
         <div className="card-block">
-          <Button text="Preview" target="preview" {...this.props} />
-          <Button text="Video Input" target="input" {...this.props} />
-          <Button text="Plugins" target="output" {...this.props} />
+          <div className="btn-group-vertical btn-block">
+            <Button text="Preview" target="preview" {...this.props} />
+            <Button text="Video Input" target="input" {...this.props} />
+            <Button text="Plugins" target="output" {...this.props} />
+          </div>
+          <button type="button" className="btn btn-block btn-danger">
+            <span className="fa fa-check fa-fw" />
+            {t('Apply')}
+          </button>
         </div>
       </div>
     );

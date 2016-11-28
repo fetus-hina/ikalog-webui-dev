@@ -1,6 +1,12 @@
 {
+  "Apply": "適用",
+  "English (EU)": "英語（欧州）版",
+  "English (NA)": "英語（北米）版",
+  "Game Language": "ゲーム言語",
+  "Japanese": "日本語版",
   "Menu": "メニュー",
+  "Needs restart IkaLog after Apply.": "適用後、IkaLogの再起動が必要です。",
+  "Plugins": "プラグイン",
   "Preview": "プレビュー",
-  "Video Input": "ビデオ入力",
-  "Plugins": "プラグイン"
+  "Video Input": "ビデオ入力"
 }

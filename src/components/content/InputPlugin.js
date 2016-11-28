@@ -171,11 +171,13 @@ class CalibrateButtons extends Component {
       return null;
     }
     return (
-      <div className={INDENT}>
+      <div className={INDENT + ' btn-group'}>
         <button type="button" className="btn btn-secondary" onChange={this._calibrate}>
+          <span className="fa fa-search fa-fw" />
           {t('Calibrate')}
         </button>
         <button type="button" className="btn btn-secondary" onChange={this._reset}>
+          <span className="fa fa-undo fa-fw" />
           {t('Reset')}
         </button>
       </div>
@@ -252,24 +254,45 @@ class DeviceList extends Component {
   constructor(props) {
     super(props);
     this._onChange = this._onChange.bind(this);
+    this._onReload = this._onReload.bind(this);
   }
 
   render() {
     if (this.props.plugins.input.driver !== this.props.driver) {
       return null;
     }
+    const devices = this.props.plugins.input.devices;
+    if (devices.length === 0) {
+      this._onReload();
+    }
     return (
-      <div className={INDENT} onChange={this._onChange}>
-        <select id="device" className="form-control" size="10">
-          <option>device 1</option>
-          <option>device 2</option>
-          <option>device 3</option>
+      <div className={INDENT}>
+        <select
+            id="device"
+            className="form-control"
+            size="10"
+            defaultValue={this.props.plugins.input.device}
+            onChange={this._onChange}
+        >
+          {devices.map(device =>
+            <option value={device}>
+              {device}
+            </option>
+          )}
         </select>
+        <button className="btn btn-secondary" onClick={this._onReload}>
+          <span className="fa fa-refresh" />
+          {t('Reload')}
+        </button>
       </div>
     );
   }
 
-  _onChange() {
-    this.dispatch('input:changeDevice', '');
+  _onChange(e) {
+    this.dispatch('input:changeDevice', e.target.value);
+  }
+
+  _onReload() {
+    this.dispatch('input:reloadDevices', '');
   }
 }

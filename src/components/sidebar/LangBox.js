@@ -29,7 +29,7 @@ class Button extends Component {
 
   render() {
     const selected = this.props.target === this.props.chrome.lang;
-    const classes = 'btn btn-block ' + (selected ? 'btn-primary' : 'btn-secondary');
+    const classes = 'btn btn-block ' + (selected ? 'btn-info active' : 'btn-secondary');
     return (
       <button type="button" className={classes} onClick={this._onClick}>
         {this.props.text}
@@ -50,8 +50,10 @@ export default class LangBox extends Component {
           UI Language
         </div>
         <div className="card-block">
-          <Button text="日本語" target="ja" {...this.props} />
-          <Button text="English" target="en" {...this.props} />
+          <div className="btn-group-vertical btn-block">
+            <Button text="日本語" target="ja" {...this.props} />
+            <Button text="English" target="en" {...this.props} />
+          </div>
         </div>
       </div>
     );

@@ -24,6 +24,7 @@ import { setUILanguage } from './Utils';
 
 export default class App extends Flux {
   subscribe() {
+    // 表示言語切り替え
     this.on("chrome:changelang", newLang => {
       if (newLang !== 'ja' && newLang !== 'en') {
         return;
@@ -40,6 +41,18 @@ export default class App extends Flux {
       });
     });
 
+    // ゲーム言語切り替え
+    this.on("game:changelang", newLang => {
+      if (newLang !== 'ja' && newLang !== 'en_NA' && newLang !== 'en_EU') {
+        return;
+      }
+      this.update(state => {
+        state.game.lang = newLang;
+        return state;
+      });
+    });
+
+    // メインコンテンツ切り替え
     this.on("chrome:changeContent", newState => {
       if (newState !== 'preview' && newState !== 'input' && newState !== 'output') {
           return;
@@ -50,6 +63,7 @@ export default class App extends Flux {
       });
     });
 
+    // input / Amarec/DirectShow/OpenCV... の切り替え
     this.on('input:changeSource', newState => {
       this.update(state => {
         state.plugins.input.driver = newState;
@@ -57,12 +71,32 @@ export default class App extends Flux {
       });
     });
     
+    // input / ファイル入力のでインタレース指定 ON/OFF
     this.on('input:changeDeinterlace', newState => {
       if (newState !== true && newState !== false) {
           return;
       }
       this.update(state => {
         state.plugins.input.deinterlace = newState;
+        return state;
+      });
+    });
+
+    // キャプチャデバイス一覧再読み込み要求
+    this.on('input:reloadDevices', unusedNewState => {
+      return $.getJSON('/api/capture_devices.json')
+        .then(json => {
+          this.update(state => {
+            state.plugins.input.devices = json;
+            return state;
+          });
+        });
+    });
+
+    // キャプチャデバイス選択
+    this.on('input:changeDevice', newState => {
+      this.update(state => {
+        state.plugins.input.device = newState;
         return state;
       });
     });
