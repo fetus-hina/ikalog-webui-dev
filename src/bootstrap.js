@@ -26,3 +26,35 @@ export function initBootstrap() {
     require('bootstrap/dist/css/bootstrap.css');
     require('bootstrap/dist/js/bootstrap.js');
 };
+
+export function initFontAwesome() {
+    require('font-awesome/css/font-awesome.min.css');
+    require('font-awesome/fonts/fontawesome-webfont.eot');
+    require('font-awesome/fonts/fontawesome-webfont.svg');
+    require('font-awesome/fonts/fontawesome-webfont.ttf');
+    require('font-awesome/fonts/fontawesome-webfont.woff');
+    require('font-awesome/fonts/fontawesome-webfont.woff2');
+    require('font-awesome/fonts/FontAwesome.otf');
+};
+
+export function initI18Next(defaultLang) {
+    const i18next = require('i18next');
+    const i18nextBackendXhr = require('i18next-xhr-backend');
+
+    i18next
+      .use(i18nextBackendXhr)
+      .init({
+        debug: true,
+        lng: defaultLang,
+        fallbackLng: false,
+        ns: [ 'app', 'sidebar', 'input' ],
+        defaultNS: 'app',
+        lowerCaseLng: true,
+        preload: [ 'ja' ],
+        escapeValue: false,
+        backend: {
+          loadPath: '/locales/{{lng}}.{{ns}}.json',
+        },
+      });
+    return i18next;
+};

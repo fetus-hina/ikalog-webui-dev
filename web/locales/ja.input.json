@@ -1,0 +1,12 @@
+{
+  "Video Input": "ビデオ入力",
+  "Select input source": "入力ソース",
+  "Capture through AmarecTV": "アマレコLive経由でキャプチャ",
+  "HDMI video input (DirectShow, recommended)": "HDMI(or D4)ビデオキャプチャ (DirectShow, 推奨)",
+  "HDMI video input (OpenCV driver)": "HDMI(or D4)ビデオキャプチャ (OpenCV)",
+  "Realtime capture from desktop": "デスクトップ上に映っているWiiU画面を介してキャプチャ",
+  "Calibrate": "WiiU画面を探す",
+  "Reset": "リセット",
+  "Read from pre-recorded video file (for testing)": "動画ファイルを再生（開発用）",
+  "Enable deinterlacing (experimental)": "インタレース解除（普段は不要）"
+}

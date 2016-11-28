@@ -1,4 +1,4 @@
-/*!
+/*
  *  IkaLog
  *  ======
  *
@@ -18,13 +18,57 @@
  *  limitations under the License.
  */
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './views/App';
-import { initBootstrap } from './bootstrap';
+import { Flux } from 'flumpt';
+import AppComponent from './components/App';
+import { setUILanguage } from './Utils';
 
-initBootstrap();
+export default class App extends Flux {
+  subscribe() {
+    this.on("chrome:changelang", newLang => {
+      if (newLang !== 'ja' && newLang !== 'en') {
+        return;
+      }
+      return new Promise(resolved => {
+        window.i18n.changeLanguage(newLang, () => {
+          this.update(state => {
+            state.chrome.lang = newLang;
+            setUILanguage(newLang);
+            return state;
+          });
+          resolved();
+        });
+      });
+    });
 
-window.React = React;
+    this.on("chrome:changeContent", newState => {
+      if (newState !== 'preview' && newState !== 'input' && newState !== 'output') {
+          return;
+      }
+      this.update(state => {
+        state.chrome.content = newState;
+        return state;
+      });
+    });
 
-ReactDOM.render(<App />, document.getElementById('app-root'));
+    this.on('input:changeSource', newState => {
+      this.update(state => {
+        state.plugins.input.driver = newState;
+        return state;
+      });
+    });
+    
+    this.on('input:changeDeinterlace', newState => {
+      if (newState !== true && newState !== false) {
+          return;
+      }
+      this.update(state => {
+        state.plugins.input.deinterlace = newState;
+        return state;
+      });
+    });
+  }
+
+  render(state) {
+    return <AppComponent {...state} />;
+  }
+}

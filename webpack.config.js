@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    bundle: './src/app.js'
+    bundle: './src/index.js'
   },
   output: {
     path: path.join(__dirname, 'web', 'assets'),
@@ -20,11 +20,11 @@ module.exports = {
         }
       },
       { test: /\.css$/, loader: 'style-loader!css-loader' },
-      { test: /\.svg$/, loader: 'url-loader?mimetype=image/svg+xml' },
-      { test: /\.woff$/, loader: 'url-loader?mimetype=application/font-woff' },
-      { test: /\.woff2$/, loader: 'url-loader?mimetype=application/font-woff' },
-      { test: /\.eot$/, loader: 'url-loader?mimetype=application/font-woff' },
-      { test: /\.ttf$/, loader: 'url-loader?mimetype=application/font-woff' },
+      { test: /\.svg/, loader: 'url-loader?mimetype=image/svg+xml' },
+      { test: /\.eot/, loader: 'url-loader?mimetype=application/vnd.ms-fontobject' },
+      { test: /\.otf/, loader: 'url-loader?mimetype=application/x-font-otf' },
+      { test: /\.ttf/, loader: 'url-loader?mimetype=application/x-font-ttf' },
+      { test: /\.woff2?/, loader: 'url-loader?mimetype=application/font-woff' },
     ]
   }
 };

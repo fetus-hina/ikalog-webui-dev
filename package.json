@@ -25,9 +25,12 @@
     "babel-preset-react": "^6.16.0",
     "bootstrap": "^4.0.0-alpha.5",
     "css-loader": "^0.26.0",
+    "flumpt": "^0.2.0",
+    "i18next": "^4.1.0",
+    "i18next-xhr-backend": "^1.2.1",
+    "keymirror": "^0.1.1",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
-    "redux": "^3.6.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.3"
