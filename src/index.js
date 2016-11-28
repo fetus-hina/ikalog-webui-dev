@@ -20,7 +20,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './app';
+import App from './App';
 import { initBootstrap, initFontAwesome, initI18Next } from './bootstrap';
 import { getUILanguage } from './Utils';
 
