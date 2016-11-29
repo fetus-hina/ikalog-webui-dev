@@ -20,6 +20,7 @@
 
 import React from 'react';
 import { Component } from 'flumpt';
+import { RadioButton, Checkbox } from '../elements';
 
 const RADIO_NAME = 'radio-9964c174-5d60-485a-b75d-ec15c80609f8';
 const INDENT = 'push-xs-1 col-xs-11';
@@ -59,15 +60,11 @@ class Amarec extends Component {
   render() {
     return (
       <div className="form-group">
-        <label>
-          <input
-              type="radio"
-              name={RADIO_NAME}
-              checked={this.props.plugins.input.driver === 'amarec'}
-              onChange={this._onChange}
-            />
-          {t('Capture through AmarecTV')}
-        </label>
+        <RadioButton
+            name={RADIO_NAME}
+            checked={this.props.plugins.input.driver === 'amarec'}
+            onChange={this._onChange}
+            text={t('Capture through AmarecTV')} />
       </div>
     );
   }
@@ -86,15 +83,11 @@ class DirectShow extends Component {
   render() {
     return (
       <div className="form-group">
-        <label>
-          <input
-              type="radio"
-              name={RADIO_NAME}
-              checked={this.props.plugins.input.driver === 'directshow'}
-              onChange={this._onChange}
-            />
-          {t('HDMI video input (DirectShow, recommended)')}
-        </label>
+        <RadioButton
+            name={RADIO_NAME}
+            checked={this.props.plugins.input.driver === 'directshow'}
+            onChange={this._onChange}
+            text={t('HDMI video input (DirectShow, recommended)')} />
         <DeviceList driver="directshow" {...this.props} />
       </div>
     );
@@ -114,15 +107,11 @@ class OpenCV extends Component {
   render() {
     return (
       <div className="form-group">
-        <label>
-          <input
-              type="radio"
-              name={RADIO_NAME}
-              checked={this.props.plugins.input.driver === 'opencv'}
-              onChange={this._onChange}
-            />
-          {t('HDMI video input (OpenCV driver)')}
-        </label>
+        <RadioButton
+            name={RADIO_NAME}
+            checked={this.props.plugins.input.driver === 'opencv'}
+            onChange={this._onChange}
+            text={t('HDMI video input (OpenCV driver)')} />
         <DeviceList driver="opencv" {...this.props} />
       </div>
     );
@@ -142,15 +131,11 @@ class Capture extends Component {
   render() {
     return (
       <div className="form-group">
-        <label>
-          <input
-              type="radio"
-              name={RADIO_NAME}
-              checked={this.props.plugins.input.driver === 'capture'}
-              onChange={this._onChange}
-            />
-          {t('Realtime capture from desktop')}
-        </label>
+        <RadioButton
+            name={RADIO_NAME}
+            checked={this.props.plugins.input.driver === 'capture'}
+            onChange={this._onChange}
+            text={t('Realtime capture from desktop')} />
         <CalibrateButtons {...this.props} />
       </div>
     );
@@ -204,15 +189,11 @@ class File extends Component {
   render() {
     return (
       <div className="form-group">
-        <label>
-          <input
-              type="radio"
-              name={RADIO_NAME}
-              checked={this.props.plugins.input.driver === 'file'}
-              onChange={this._onChange}
-            />
-          {t('Read from pre-recorded video file (for testing)')}
-        </label>
+        <RadioButton
+            name={RADIO_NAME}
+            checked={this.props.plugins.input.driver === 'file'}
+            onChange={this._onChange}
+            text={t('Read from pre-recorded video file (for testing)')} />
         <Deinterlace {...this.props} />
       </div>
     );
@@ -235,14 +216,11 @@ class Deinterlace extends Component {
     }
     return (
       <div className={INDENT}>
-        <label>
-          <input
-              type="checkbox"
-              checked={this.props.plugins.input.deinterlace}
-              onChange={this._onChange}
-            />
-          {t('Enable deinterlacing (experimental)')}
-        </label>
+        <Checkbox
+            type="checkbox"
+            checked={this.props.plugins.input.deinterlace}
+            onChange={this._onChange}
+            text={t('Enable deinterlacing (experimental)')} />
       </div>
     );
   }
@@ -268,24 +246,28 @@ class DeviceList extends Component {
       this._onReload();
     }
     return (
-      <div className={INDENT}>
-        <select
-            id="device"
-            className="form-control"
-            size="10"
-            defaultValue={this.props.plugins.input.device}
-            onChange={this._onChange}
-        >
-          {devices.map(device =>
-            <option value={device}>
-              {device}
-            </option>
-          )}
-        </select>
-        <button className="btn btn-secondary" onClick={this._onReload}>
-          <span className="fa fa-refresh" />
-          {t('Reload')}
-        </button>
+      <div className="row">
+        <div className={INDENT}>
+          <select
+              id="device"
+              className="form-control mb-1"
+              size="10"
+              defaultValue={this.props.plugins.input.device}
+              onChange={this._onChange}
+          >
+            {devices.map(device =>
+              <option value={device}>
+                {device}
+              </option>
+            )}
+          </select>
+          <div className="text-xs-right">
+            <button className="btn btn-secondary" onClick={this._onReload}>
+              <span className="fa fa-refresh fa-fw" />
+              {t('Reload')}
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
