@@ -22,7 +22,6 @@ import React from 'react';
 import { Component } from 'flumpt';
 import MenuBox from './sidebar/MenuBox';
 import LangBox from './sidebar/LangBox';
-import GameLangBox from './sidebar/GameLangBox';
 
 export default class Sidebar extends Component {
   render() {
@@ -30,7 +29,6 @@ export default class Sidebar extends Component {
       <div className={this.props.className}>
         <MenuBox {...this.props} />
         <LangBox {...this.props} />
-        <GameLangBox {...this.props} />
       </div>
     );
   }

@@ -23,6 +23,31 @@ import { Component } from 'flumpt';
 
 const t = text => window.i18n.t(text, {ns: 'sidebar'});
 
+export default class MenuBox extends Component {
+  render() {
+    return (
+      <div className="card">
+        <div className="card-block">
+          <Buttons {...this.props} />
+          <Apply {...this.props} />
+        </div>
+      </div>
+    );
+  }
+}
+
+class Buttons extends Component {
+  render() {
+    return (
+      <div className="btn-group-vertical btn-block mb-1">
+        <Button text="Preview" target="preview" {...this.props} />
+        <Button text="Video Input" target="input" {...this.props} />
+        <Button text="Plugins" target="output" {...this.props} />
+      </div>
+    );
+  }
+}
+
 class Button extends Component {
   constructor(props) {
     super(props);
@@ -45,25 +70,24 @@ class Button extends Component {
   }
 }
 
-export default class MenuBox extends Component {
+class Apply extends Component {
+  constructor(props) {
+    super(props);
+    this._onClick = this._onClick.bind(this);
+  }
+
   render() {
     return (
-      <div className="card">
-        <div className="card-header">
-          {t('Menu')}
-        </div>
-        <div className="card-block">
-          <div className="btn-group-vertical btn-block">
-            <Button text="Preview" target="preview" {...this.props} />
-            <Button text="Video Input" target="input" {...this.props} />
-            <Button text="Plugins" target="output" {...this.props} />
-          </div>
-          <button type="button" className="btn btn-block btn-danger">
-            <span className="fa fa-check fa-fw" />
-            {t('Apply')}
-          </button>
-        </div>
+      <div className="text-xs-right">
+        <button type="button" className="btn btn-outline-primary" onClick={this._onClick}>
+          <span className="fa fa-check fa-fw"/>
+          {t('Apply')}
+        </button>
       </div>
     );
+  }
+
+  _onClick() {
+    alert('Not implemented yet');
   }
 }
