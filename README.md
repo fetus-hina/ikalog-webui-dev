@@ -23,7 +23,7 @@ How to develop
 License
 -------
 
-Copyright (C) 2015 Takeshi HASEGAWA
+Copyright (C) 2015 Takeshi HASEGAWA<br>
 Copyright (C) 2016 AIZAWA Hina
 
 Licensed under the Apache License, Version 2.0
