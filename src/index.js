@@ -42,6 +42,7 @@ const app = new App({
     chrome: {
       lang: 'unknown',
       content: 'preview',
+      pluginTab: 'file',
     },
     game: {
       lang: 'ja', // FIXME

@@ -20,13 +20,63 @@
 
 import React from 'react';
 import { Component } from 'flumpt';
+import { stopEvent } from '../../Utils';
+import File from './outputs/File';
+
+const t = (text, ns) => window.i18n.t(text, {ns: ns});
 
 export default class OutputPlugin extends Component {
   render() {
+    const content = ((tab) => {
+      switch (tab) {
+        case 'file':
+          return <File {...this.props} />;
+
+        default:
+          return <div>Not impl.: {tab} </div>;
+      }
+    })(this.props.chrome.pluginTab);
+
     return (
-      <div>
-        Output Plugin
+      <div className="card">
+        <div className="card-header">
+          <ul className="nav nav-tabs card-header-tabs float-xs-left">
+            <NavItem text='File'       target='file'       {...this.props} />
+            <NavItem text='SNS'        target='sns'        {...this.props} />
+            <NavItem text='stat.ink'   target='stat-ink'   {...this.props} />
+            <NavItem text='Speech App' target='speech-app' {...this.props} />
+            <NavItem text='Recording'  target='recording'  {...this.props} />
+            <NavItem text='WebSocket'  target='websocket'  {...this.props} />
+          </ul>
+        </div>
+        <div className="card-block">
+          {content}
+        </div>
       </div>
     );
+  }
+}
+
+class NavItem extends Component {
+  constructor(props) {
+    super(props);
+    this._onClick = this._onClick.bind(this);
+  }
+
+  render() {
+    const selected = this.props.target === this.props.chrome.pluginTab;
+    const classes = 'nav-link' + (selected ? ' active' : '');
+    return (
+      <li className="nav-item">
+        <a className={classes} href="#" onClick={this._onClick}>
+          {t(this.props.text, 'app')}
+        </a>
+      </li>
+    );
+  }
+
+  _onClick(e) {
+    this.dispatch('chrome:changePluginTab', this.props.target);
+    stopEvent(e);
   }
 }

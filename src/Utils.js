@@ -74,3 +74,8 @@ function _getBrowserAcceptLanguages() {
   }
   return ret;
 }
+
+export function stopEvent(ev) {
+  ev.preventDefault();
+  ev.stopPropagation();
+}

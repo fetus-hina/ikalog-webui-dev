@@ -63,6 +63,14 @@ export default class App extends Flux {
       });
     });
 
+    // プラグイン設定のタブ切り替え
+    this.on("chrome:changePluginTab", newState => {
+      this.update(state => {
+        state.chrome.pluginTab = newState;
+        return state;
+      });
+    });
+
     // input / Amarec/DirectShow/OpenCV... の切り替え
     this.on('input:changeSource', newState => {
       this.update(state => {

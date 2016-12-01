@@ -47,7 +47,12 @@ export function initI18Next(defaultLang) {
         debug: true,
         lng: defaultLang,
         fallbackLng: false,
-        ns: [ 'app', 'sidebar', 'input' ],
+        ns: [
+          'app',
+          'sidebar',
+          'input',
+          'output-file',
+        ],
         defaultNS: 'app',
         lowerCaseLng: true,
         preload: [ 'ja' ],
