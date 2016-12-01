@@ -55,6 +55,18 @@ const app = new App({
         devices: [],
       },
       output: {
+        csv: {
+          enabled: false,
+          path: 'C:\\path\\to\\file.csv',
+        },
+        json: {
+          enabled: false,
+          path: 'C:\\path\\to\\file.json',
+        },
+        screenshot: {
+          enabled: false,
+          path: 'C:\\path\\to\\directory',
+        }
       },
     },
   },

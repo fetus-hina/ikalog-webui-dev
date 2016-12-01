@@ -108,6 +108,48 @@ export default class App extends Flux {
         return state;
       });
     });
+
+    // CSV 設定変更
+    this.on('output:changeCsvEnable', newState => {
+      this.update(state => {
+        state.plugins.output.csv.enabled = !!newState;
+        return state;
+      });
+    });
+    this.on('output:changeCsvPath', newState => {
+      this.update(state => {
+        state.plugins.output.csv.path = String(newState);
+        return state;
+      });
+    });
+
+    // JSON 設定変更
+    this.on('output:changeJsonEnable', newState => {
+      this.update(state => {
+        state.plugins.output.json.enabled = !!newState;
+        return state;
+      });
+    });
+    this.on('output:changeJsonPath', newState => {
+      this.update(state => {
+        state.plugins.output.json.path = String(newState);
+        return state;
+      });
+    });
+
+    // スクショ設定変更
+    this.on('output:changeScreenshotEnable', newState => {
+      this.update(state => {
+        state.plugins.output.screenshot.enabled = !!newState;
+        return state;
+      });
+    });
+    this.on('output:changeScreenshotPath', newState => {
+      this.update(state => {
+        state.plugins.output.screenshot.path = String(newState);
+        return state;
+      });
+    });
   }
 
   render(state) {
