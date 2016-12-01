@@ -150,6 +150,26 @@ export default class App extends Flux {
         return state;
       });
     });
+
+    // Slack 設定変更
+    this.on('output:changeSlackEnable', newState => {
+      this.update(state => {
+        state.plugins.output.slack.enabled = !!newState;
+        return state;
+      });
+    });
+    this.on('output:changeSlackUrl', newState => {
+      this.update(state => {
+        state.plugins.output.slack.webhook = String(newState);
+        return state;
+      });
+    });
+    this.on('output:changeSlackBotName', newState => {
+      this.update(state => {
+        state.plugins.output.slack.botName = String(newState);
+        return state;
+      });
+    });
   }
 
   render(state) {

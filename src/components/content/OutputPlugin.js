@@ -22,6 +22,7 @@ import React from 'react';
 import { Component } from 'flumpt';
 import { stopEvent } from '../../Utils';
 import File from './outputs/File';
+import Sns from './outputs/Sns';
 
 const t = (text, ns) => window.i18n.t(text, {ns: ns});
 
@@ -31,6 +32,9 @@ export default class OutputPlugin extends Component {
       switch (tab) {
         case 'file':
           return <File {...this.props} />;
+
+        case 'sns':
+          return <Sns {...this.props} />;
 
         default:
           return <div>Not impl.: {tab} </div>;

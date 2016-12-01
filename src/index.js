@@ -66,7 +66,14 @@ const app = new App({
         screenshot: {
           enabled: false,
           path: 'C:\\path\\to\\directory',
-        }
+        },
+        twitter: {
+        },
+        slack: {
+          enabled: false,
+          webhook: 'https://example.com/',
+          botName: 'IkaLog',
+        },
       },
     },
   },

@@ -52,6 +52,7 @@ export function initI18Next(defaultLang) {
           'sidebar',
           'input',
           'output-file',
+          'output-sns',
         ],
         defaultNS: 'app',
         lowerCaseLng: true,
