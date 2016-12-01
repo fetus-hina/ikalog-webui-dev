@@ -38,6 +38,7 @@ export default class Json extends Component {
     return (
       <fieldset>
         <legend>
+          <span className="fa fa-file-code-o fa-fw"></span>
           {t('JSON output')}
         </legend>
         <div className="form-group">

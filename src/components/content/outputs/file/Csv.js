@@ -38,6 +38,7 @@ export default class Csv extends Component {
     return (
       <fieldset>
         <legend>
+          <span className="fa fa-file-excel-o fa-fw" />
           {t('CSV output')}
         </legend>
         <div className="form-group">

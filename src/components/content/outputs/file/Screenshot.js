@@ -38,6 +38,7 @@ export default class Screenshot extends Component {
     return (
       <fieldset>
         <legend>
+          <span className="fa fa-file-image-o fa-fw" />
           {t('Screenshot')}
         </legend>
         <div className="form-group">
