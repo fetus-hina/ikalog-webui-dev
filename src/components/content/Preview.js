@@ -29,7 +29,7 @@ export default class Preview extends Component {
     };
     return (
       <div>
-        <img src="/dummy.png" style={style} />
+        <img src="http://127.0.0.1:8888/api/v1/engine/preview" style={style} />
       </div>
     );
   }
