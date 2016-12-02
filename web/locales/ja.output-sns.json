@@ -1,4 +1,13 @@
 {
+  "Additional message": "ツイートに付加するメッセージ",
+  "Attach a scoreboard": "リザルト画面のスクリーンショットを投稿する",
+  "Bot name": "Botの名前",
+  "Include my K/D ratio": "K/Dレートを投稿する",
+  "Include my rank in ranked mode": "ガチマッチのウデマエを投稿する",
+  "Include my score": "ナワバリスコアを投稿する",
+  "Post game results to Twitter": "Twitterにゲーム結果を投稿する",
   "Post game results to a Slack channel": "戦績をSlackチャンネルに投稿する",
-  "Bot name": "Botの名前"
+  "Reply to @_ikalog_ to keep my followers' timeline clean": "@_ikalog_ へのリプライとして投稿（フォロワーのTLを汚しません）",
+  "Use IkaLog Consumer Key (easy)": "IkaLog のコンシューマキーを使う（簡単）",
+  "Use you own Consumer Key": "自分で取得したコンシューマキーを使う"
 }

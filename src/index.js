@@ -68,6 +68,18 @@ const app = new App({
           path: 'C:\\path\\to\\directory',
         },
         twitter: {
+          enabled: false,
+          useReply: true,
+          sendScreenShot: false,
+          sendMyScore: false,
+          sendKDRatio: false,
+          sendRank: false,
+          useKey: 'own', // 'own' or 'builtin'
+          consumerKey: '',
+          consumerSecret: '',
+          accessToken: '',
+          accessSecret: '',
+          additionalMessage: '',
         },
         slack: {
           enabled: false,

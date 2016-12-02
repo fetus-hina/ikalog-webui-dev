@@ -170,6 +170,35 @@ export default class App extends Flux {
         return state;
       });
     });
+
+    // Twitter 設定変更
+    this.on('output:changeTwitterEnable', newState => {
+      this.update(state => {
+        state.plugins.output.twitter.enabled = !!newState;
+        return state;
+      });
+    });
+    this.on('output:changeTwitterFlag', newState => {
+      this.update(state => {
+        state.plugins.output.twitter = newState;
+        return state;
+      });
+    });
+    this.on('output:changeTwitterMessage', newState => {
+      this.update(state => {
+        state.plugins.output.twitter.additionalMessage = String(newState);
+        return state;
+      });
+    });
+    this.on('output:changeTwitterKeyType', newState => {
+      if (newState !== 'own' && newState !== 'builtin') {
+        return;
+      }
+      this.update(state => {
+        state.plugins.output.twitter.useKey = newState;
+        return state;
+      });
+    });
   }
 
   render(state) {
