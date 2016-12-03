@@ -58,6 +58,9 @@ class Amarec extends Component {
   }
 
   render() {
+    if (!this.props.system.isWindows) {
+      return null;
+    }
     return (
       <div className="form-group">
         <RadioButton
@@ -81,6 +84,9 @@ class DirectShow extends Component {
   }
 
   render() {
+    if (!this.props.system.isWindows) {
+      return null;
+    }
     return (
       <div className="form-group">
         <RadioButton
@@ -158,15 +164,17 @@ class CalibrateButtons extends Component {
       return null;
     }
     return (
-      <div className={INDENT + ' btn-group'}>
-        <button type="button" className="btn btn-secondary" onChange={this._calibrate}>
-          <span className="fa fa-search fa-fw" />
-          {t('Calibrate')}
-        </button>
-        <button type="button" className="btn btn-secondary" onChange={this._reset}>
-          <span className="fa fa-undo fa-fw" />
-          {t('Reset')}
-        </button>
+      <div className={INDENT + ' form-group'}>
+        <div className="btn-group">
+          <button type="button" className="btn btn-secondary" onChange={this._calibrate}>
+            <span className="fa fa-search fa-fw" />
+            {t('Calibrate')}
+          </button>
+          <button type="button" className="btn btn-secondary" onChange={this._reset}>
+            <span className="fa fa-undo fa-fw" />
+            {t('Reset')}
+          </button>
+        </div>
       </div>
     );
   }
@@ -194,7 +202,7 @@ class File extends Component {
             checked={this.props.plugins.input.driver === 'file'}
             onChange={this._onChange}
             text={t('Read from pre-recorded video file (for testing)')} />
-        <Deinterlace {...this.props} />
+        <FileSettings {...this.props} />
       </div>
     );
   }
@@ -204,10 +212,11 @@ class File extends Component {
   }
 }
 
-class Deinterlace extends Component {
+class FileSettings extends Component {
   constructor(props) {
     super(props);
-    this._onChange = this._onChange.bind(this);
+    this._onChangeFilename = this._onChangeFilename.bind(this);
+    this._onChangeDeinterlace = this._onChangeDeinterlace.bind(this);
   }
 
   render() {
@@ -216,17 +225,37 @@ class Deinterlace extends Component {
     }
     return (
       <div className={INDENT}>
-        <Checkbox
-            type="checkbox"
-            checked={this.props.plugins.input.deinterlace}
-            onChange={this._onChange}
-            text={t('Enable deinterlacing (experimental)')} />
+        <div className="form-group">
+          <label htmlFor="input-file-name">
+            {t('Video file path')}:
+          </label>
+          <input
+              className="form-control"
+              type="text"
+              id="input-file-name"
+              value={this.props.plugins.input.filePath}
+              onChange={this._onChangeFilename}
+              onFocus={e => {e.target.select()}}
+            />
+        </div>
+        <div className="form-group">
+          <Checkbox
+              type="checkbox"
+              checked={this.props.plugins.input.fileDeinterlace}
+              onChange={this._onChangeDeinterlace}
+              text={t('Enable deinterlacing (experimental)')}
+            />
+        </div>
       </div>
     );
   }
 
-  _onChange() {
-    this.dispatch('input:changeDeinterlace', !this.props.plugins.input.deinterlace);
+  _onChangeDeinterlace() {
+    this.dispatch('input:changeFileDeinterlace', !this.props.plugins.input.fileDeinterlace);
+  }
+
+  _onChangeFilename(e) {
+    this.dispatch('input:changeFileName', String(e.target.value).trim());
   }
 }
 

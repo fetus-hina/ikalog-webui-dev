@@ -80,12 +80,20 @@ export default class App extends Flux {
     });
     
     // input / ファイル入力のでインタレース指定 ON/OFF
-    this.on('input:changeDeinterlace', newState => {
+    this.on('input:changeFileDeinterlace', newState => {
       if (newState !== true && newState !== false) {
           return;
       }
       this.update(state => {
-        state.plugins.input.deinterlace = newState;
+        state.plugins.input.fileDeinterlace = newState;
+        return state;
+      });
+    });
+
+    // input / ファイル入力のファイル名
+    this.on('input:changeFilePath', newState => {
+      this.update(state => {
+        state.plugins.input.filePath = String(newState);
         return state;
       });
     });

@@ -55,7 +55,8 @@ const app = new App({
       input: {
         driver: 'amarec',
         device: null,
-        deinterlace: false,
+        fileDeinterlace: false,
+        filePath: '',
         devices: [],
       },
       output: {
