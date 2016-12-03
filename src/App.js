@@ -199,6 +199,30 @@ export default class App extends Flux {
         return state;
       });
     });
+    this.on('output:changeTwitterConsumerKey', newState => {
+      this.update(state => {
+        state.plugins.output.twitter.consumerKey = String(newState);
+        return state;
+      });
+    });
+    this.on('output:changeTwitterConsumerSecret', newState => {
+      this.update(state => {
+        state.plugins.output.twitter.consumerSecret = String(newState);
+        return state;
+      });
+    });
+    this.on('output:changeTwitterAccessToken', newState => {
+      this.update(state => {
+        state.plugins.output.twitter.accessToken = String(newState);
+        return state;
+      });
+    });
+    this.on('output:changeTwitterAccessSecret', newState => {
+      this.update(state => {
+        state.plugins.output.twitter.accessSecret = String(newState);
+        return state;
+      });
+    });
   }
 
   render(state) {

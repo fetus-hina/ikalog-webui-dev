@@ -32,6 +32,10 @@ export default class Twitter extends Component {
     this._onToggleFlag = this._onToggleFlag.bind(this);
     this._onMsgChanged = this._onMsgChanged.bind(this);
     this._onChangeUseKey = this._onChangeUseKey.bind(this);
+    this._onChangeConsumerKey = this._onChangeConsumerKey.bind(this);
+    this._onChangeConsumerSecret = this._onChangeConsumerSecret.bind(this);
+    this._onChangeAccessToken = this._onChangeAccessToken.bind(this);
+    this._onChangeAccessSecret = this._onChangeAccessSecret.bind(this);
   }
 
   render() {
@@ -135,6 +139,7 @@ export default class Twitter extends Component {
               checked={this.props.plugins.output.twitter.useKey == 'builtin'}
               text={t('Use IkaLog Consumer Key (easy)')}
               onChange={e => this._onChangeUseKey(e, 'builtin')}
+              disabled={!this.props.system.hasBuiltinTwitterToken}
             />
         </div>
         <div className="form-group">
@@ -153,60 +158,84 @@ export default class Twitter extends Component {
   _renderInputKeys() {
     const isBuiltin = this.props.plugins.output.twitter.useKey === 'builtin';
     const isOwn     = this.props.plugins.output.twitter.useKey === 'own';
-    if (!isBuiltin && !isOwn) {
-      return null;
+    if (isBuiltin || isOwn) {
+      const consumerKey    = isBuiltin ? t('(Builtin)') : this.props.plugins.output.twitter.consumerKey;
+      const consumerSecret = isBuiltin ? t('(Builtin)') : this.props.plugins.output.twitter.consumerSecret;
+      const accessToken    = this.props.plugins.output.twitter.accessToken;
+      const accessSecret   = this.props.plugins.output.twitter.accessSecret;
+
+      const csOrAuth = isBuiltin
+          ? (
+            <div>
+              <button type="button" className="btn btn-outline-primary">
+                <span className="fa fa-fw fa-twitter" />
+                {t('Authenticate')}
+              </button>
+            </div>
+          )
+          : (
+            <div>
+              <div className="form-group">
+                <label htmlFor="output-tw-ck">
+                  {t('Consumer Key')}:
+                </label>
+                <input
+                    type="text"
+                    className="form-control"
+                    id="output-tw-ck"
+                    value={consumerKey}
+                    onChange={this._onChangeConsumerKey}
+                  />
+              </div>
+              <div className="form-group">
+                <label htmlFor="output-tw-cs">
+                  {t('Consumer Secret')}:
+                </label>
+                <input
+                    type="text"
+                    className="form-control"
+                    id="output-tw-cs"
+                    value={consumerSecret}
+                    onChange={this._onChangeConsumerSecret}
+                  />
+              </div>
+            </div>
+          );
+
+      return (
+        <div className={INDENT}>
+          {csOrAuth}
+          <div className="form-group">
+            <label htmlFor="output-tw-tk">
+              {t('Access Token')}:
+            </label>
+            <input
+                type="text"
+                className="form-control"
+                id="output-tw-tk"
+                value={accessToken}
+                onChange={this._onChangeAccessToken}
+                disabled={isBuiltin}
+              />
+          </div>
+          <div className="form-group">
+            <label htmlFor="output-tw-ts">
+              {t('Access Token Secret')}:
+            </label>
+            <input
+                type="text"
+                className="form-control"
+                id="output-tw-ts"
+                value={accessSecret}
+                onChange={this._onChangeAccessSecret}
+                disabled={isBuiltin}
+              />
+          </div>
+        </div>
+      );
     }
-    return (
-      <div className={INDENT}>
-        TODO
-      </div>
-    );
+    return null; // 明示的にnullを返さないとエラーになる
   }
-/*
-        twitter: {
-          useKey: 'own', // 'own' or 'builtin'
-          consumerKey: null,
-          consumerSecret: null,
-          accessToken: null,
-          accessSecret: null,
-          additionalMessage: null,
-        },
-
- */
-
-  // render() {
-  //   const input = this.props.plugins.output.csv.enabled ? this._renderInput() : null;
-
-  //   return (
-  //     <fieldset>
-  //       <legend>
-  //         {t('CSV output')}
-  //       </legend>
-  //     </fieldset>
-  //   );
-  // }
-
-  // _renderInput() {
-  //   return (
-  //     <div className="row">
-  //       <div className={INDENT}>
-  //         <label htmlFor="output-csv-filepath">
-  //           {t('Log filename')}:
-  //         </label>
-  //         <input
-  //             type="text"
-  //             className="form-control"
-  //             id="output-csv-filepath"
-  //             value={this.props.plugins.output.csv.path}
-  //             required={true}
-  //             onChange={this._onChangePath}
-  //             onFocus={e => {e.target.select()}}
-  //           />
-  //       </div>
-  //     </div>
-  //   );
-  // }
-
   _onChangeEnable() {
     this.dispatch('output:changeTwitterEnable', !this.props.plugins.output.twitter.enabled);
   }
@@ -223,5 +252,21 @@ export default class Twitter extends Component {
 
   _onChangeUseKey(e, newState) {
     this.dispatch('output:changeTwitterKeyType', newState);
+  }
+
+  _onChangeConsumerKey(e) {
+    this.dispatch('output:changeTwitterConsumerKey', String(e.target.value).trim());
+  }
+
+  _onChangeConsumerSecret(e) {
+    this.dispatch('output:changeTwitterConsumerSecret', String(e.target.value).trim());
+  }
+
+  _onChangeAccessToken(e) {
+    this.dispatch('output:changeTwitterAccessToken', String(e.target.value).trim());
+  }
+
+  _onChangeAccessSecret(e) {
+    this.dispatch('output:changeTwitterAccessSecret', String(e.target.value).trim());
   }
 }

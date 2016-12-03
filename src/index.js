@@ -47,6 +47,10 @@ const app = new App({
     game: {
       lang: 'ja', // FIXME
     },
+    system: {
+      hasBuiltinTwitterToken: true,
+      isWindows: true,
+    },
     plugins: {
       input: {
         driver: 'amarec',
