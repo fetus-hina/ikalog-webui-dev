@@ -20,22 +20,13 @@
 
 import React from 'react';
 import { Component } from 'flumpt';
+import { RadioButton } from './elements';
 
 class Logo extends Component {
   render() {
     const url = 'https://dl.dropboxusercontent.com/u/14421778/IkaLog/ikalog_logo1.png';
     return (
       <img src={url} width="30" height="30" className="d-inline-block align-top mr-1" alt="" />
-    );
-  }
-}
-
-class Radio extends Component {
-  render() {
-    const checked = this.props.target === this.props.chrome.lang;
-    const chkcls = checked ? 'fa-dot-circle-o' : 'fa-circle-o';
-    return (
-      <span className={'fa fa-fw ' + chkcls} />
     );
   }
 }
@@ -47,10 +38,15 @@ class NavLang extends Component {
   }
 
   render() {
+    const checked = this.props.lang === this.props.chrome.lang;
     return (
       <a className="dropdown-item" href="#" data-lang={this.props.lang} onClick={this._onClick}>
-        <Radio target={this.props.lang} {...this.props} />
-        {this.props.name}
+        <RadioButton
+            name="header-ui-lang"
+            checked={checked}
+            onChange={() => {}}
+            text={this.props.name}
+          />
       </a>
     );
   }
