@@ -23,6 +23,7 @@ import { Component } from 'flumpt';
 import { stopEvent } from '../../Utils';
 import File from './outputs/File';
 import Sns from './outputs/Sns';
+import Speech from './outputs/Speech';
 
 const t = (text, ns) => window.i18n.t(text, {ns: ns});
 
@@ -36,6 +37,9 @@ export default class OutputPlugin extends Component {
         case 'sns':
           return <Sns {...this.props} />;
 
+        case 'speech':
+          return <Speech {...this.props} />;
+
         default:
           return <div>Not impl.: {tab} </div>;
       }
@@ -45,12 +49,12 @@ export default class OutputPlugin extends Component {
       <div className="card">
         <div className="card-header">
           <ul className="nav nav-tabs card-header-tabs float-xs-left">
-            <NavItem text='File'       target='file'       {...this.props} />
-            <NavItem text='SNS'        target='sns'        {...this.props} />
-            <NavItem text='stat.ink'   target='stat-ink'   {...this.props} />
-            <NavItem text='Speech App' target='speech-app' {...this.props} />
-            <NavItem text='Recording'  target='recording'  {...this.props} />
-            <NavItem text='WebSocket'  target='websocket'  {...this.props} />
+            <NavItem text='File'       target='file'      {...this.props} />
+            <NavItem text='SNS'        target='sns'       {...this.props} />
+            <NavItem text='stat.ink'   target='statink'   {...this.props} />
+            <NavItem text='Speech App' target='speech'    {...this.props} />
+            <NavItem text='Recording'  target='recording' {...this.props} />
+            <NavItem text='WebSocket'  target='websocket' {...this.props} />
           </ul>
         </div>
         <div className="card-block">

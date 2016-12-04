@@ -91,6 +91,18 @@ const app = new App({
           webhook: 'https://example.com/',
           botName: 'IkaLog',
         },
+        statink: {
+        },
+        boyomi: {
+          enabled: false,
+          host: '127.0.0.1',
+          port: 50001,
+        },
+        mikumikumouth: {
+          enabled: false,
+          host: '127.0.0.1',
+          port: 50082,
+        },
       },
     },
   },

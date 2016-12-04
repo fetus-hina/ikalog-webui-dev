@@ -231,6 +231,58 @@ export default class App extends Flux {
         return state;
       });
     });
+
+    // 棒読みちゃん
+    this.on('output:changeBoyomiEnable', newState => {
+      if (newState !== true && newState !== false) {
+        return;
+      }
+      this.update(state => {
+        state.plugins.output.boyomi.enabled = newState;
+        return state;
+      });
+    });
+    this.on('output:changeBoyomiHost', newState => {
+      this.update(state => {
+        state.plugins.output.boyomi.host = String(newState);
+        return state;
+      });
+    });
+    this.on('output:changeBoyomiPort', newState => {
+      if (typeof newState !== 'number' || newState < 1 || newState > 65535) {
+        return;
+      }
+      this.update(state => {
+        state.plugins.output.boyomi.port = newState;
+        return state;
+      });
+    });
+
+    // みくみくまうす
+    this.on('output:changeMikuMikuMouthEnable', newState => {
+      if (newState !== true && newState !== false) {
+        return;
+      }
+      this.update(state => {
+        state.plugins.output.mikumikumouth.enabled = newState;
+        return state;
+      });
+    });
+    this.on('output:changeMikuMikuMouthHost', newState => {
+      this.update(state => {
+        state.plugins.output.mikumikumouth.host = String(newState);
+        return state;
+      });
+    });
+    this.on('output:changeMikuMikuMouthPort', newState => {
+      if (typeof newState !== 'number' || newState < 1 || newState > 65535) {
+        return;
+      }
+      this.update(state => {
+        state.plugins.output.mikumikumouth.port = newState;
+        return state;
+      });
+    });
   }
 
   render(state) {

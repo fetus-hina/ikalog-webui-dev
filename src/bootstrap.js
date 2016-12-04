@@ -53,6 +53,7 @@ export function initI18Next(defaultLang) {
           'input',
           'output-file',
           'output-sns',
+          'output-speech',
         ],
         defaultNS: 'app',
         lowerCaseLng: true,
