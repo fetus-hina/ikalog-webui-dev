@@ -1,6 +1,27 @@
-import React, { Component } from 'react'
-import Sidebar from './Sidebar'
-import MainContent from './MainContent'
+/*
+ *  IkaLog
+ *  ======
+ *
+ *  Copyright (C) 2015 Takeshi HASEGAWA
+ *  Copyright (C) 2016 AIZAWA Hina
+ *  
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *  
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *  
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+import React, { Component } from 'react';
+import { stopEvent } from '../Utils';
+import Sidebar from './Sidebar';
+import MainContent from './MainContent';
 
 export default class Content extends Component {
   render() {
@@ -14,8 +35,9 @@ export default class Content extends Component {
     const classesSide = this._addPullClass(this._makeCounterSide(classesMain));
 
     return (
-      <div className="container mt-3">
+      <div className="container mt-2">
         <div className="row">
+          <XsHelper {...this.props} />
           <MainContent className={classesMain.join(' ')} {...this.props} />
           <Sidebar className={classesSide.join(' ')} {...this.props} />
         </div>
@@ -64,5 +86,33 @@ export default class Content extends Component {
       ret.push(`col-${match[1]}-${width}`);
     });
     return ret;
+  }
+}
+
+class XsHelper extends Component {
+  constructor(props) {
+    super(props);
+    this._onClick = this._onClick.bind(this);
+  }
+
+  render() {
+    return (
+      <div className="col-xs-12 hidden-sm-up">
+        <div className="text-xs-right mb-2">
+          <button className="btn btn-secondary" onClick={this._onClick}>
+            <span className="fa fa-fw fa-angle-double-down" />
+            {window.i18n.t('Menu', {ns: 'sidebar'})}
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  _onClick(e) {
+    const $ = window.jQuery;
+    const $target = $('#menu');
+    $('body,html').animate({scrollTop:$target.offset().top - 16}, 'fast');
+    $('body,html').animate({scrollLeft:0}, 'fast');
+    stopEvent(e);
   }
 }

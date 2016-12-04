@@ -26,7 +26,10 @@ const t = text => window.i18n.t(text, {ns: 'sidebar'});
 export default class MenuBox extends Component {
   render() {
     return (
-      <div className="card">
+      <div className="card" id="menu">
+        <div className="card-header hidden-sm-up">
+          {t('Menu')}
+        </div>
         <div className="card-block">
           <Buttons {...this.props} />
           <Apply {...this.props} />
