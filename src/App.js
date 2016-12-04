@@ -283,6 +283,32 @@ export default class App extends Flux {
         return state;
       });
     });
+
+    // WebSocket
+    this.on('output:changeWebSocketEnable', newState => {
+      if (newState !== true && newState !== false) {
+        return;
+      }
+      this.update(state => {
+        state.plugins.output.websocket.enabled = newState;
+        return state;
+      });
+    });
+    // this.on('output:changeWebSocketHost', newState => {
+    //   this.update(state => {
+    //     state.plugins.output.websocket.host = String(newState);
+    //     return state;
+    //   });
+    // });
+    this.on('output:changeWebSocketPort', newState => {
+      if (typeof newState !== 'number' || newState < 1 || newState > 65535) {
+        return;
+      }
+      this.update(state => {
+        state.plugins.output.websocket.port = newState;
+        return state;
+      });
+    });
   }
 
   render(state) {

@@ -24,6 +24,7 @@ import { stopEvent } from '../../Utils';
 import File from './outputs/File';
 import Sns from './outputs/Sns';
 import Speech from './outputs/Speech';
+import WebSocket from './outputs/WebSocket';
 
 const t = (text, ns) => window.i18n.t(text, {ns: ns});
 
@@ -39,6 +40,9 @@ export default class OutputPlugin extends Component {
 
         case 'speech':
           return <Speech {...this.props} />;
+
+        case 'websocket':
+          return <WebSocket {...this.props} />;
 
         default:
           return <div>Not impl.: {tab} </div>;
