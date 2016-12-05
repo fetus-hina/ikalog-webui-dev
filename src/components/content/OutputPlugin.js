@@ -23,6 +23,7 @@ import { Component } from 'flumpt';
 import { stopEvent } from '../../Utils';
 import File from './outputs/File';
 import Sns from './outputs/Sns';
+import Statink from './outputs/Statink';
 import Speech from './outputs/Speech';
 import WebSocket from './outputs/WebSocket';
 
@@ -37,6 +38,9 @@ export default class OutputPlugin extends Component {
 
         case 'sns':
           return <Sns {...this.props} />;
+
+        case 'statink':
+          return <Statink {...this.props} />;
 
         case 'speech':
           return <Speech {...this.props} />;

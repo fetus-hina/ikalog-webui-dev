@@ -40,6 +40,16 @@ export class RadioButton extends Component {
   }
 }
 
+export class WrappedRadioButton extends Component {
+  render() {
+    return (
+      <div className="form-group">
+        <RadioButton {...this.props} />
+      </div>
+    );
+  }
+}
+
 export class Checkbox extends Component {
   render() {
     return (
@@ -59,3 +69,12 @@ export class Checkbox extends Component {
   }
 }
 
+export class WrappedCheckbox extends Component {
+  render() {
+    return (
+      <div className="form-group">
+        <Checkbox {...this.props} />
+      </div>
+    );
+  }
+}

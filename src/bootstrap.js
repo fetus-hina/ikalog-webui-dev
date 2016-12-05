@@ -45,6 +45,8 @@ export function initI18Next(defaultLang) {
       .use(i18nextBackendXhr)
       .init({
         debug: true,
+        nsSeparator: '::',
+        keySeparator: '..',
         lng: defaultLang,
         fallbackLng: false,
         ns: [
@@ -53,6 +55,7 @@ export function initI18Next(defaultLang) {
           'input',
           'output-file',
           'output-sns',
+          'output-statink',
           'output-speech',
           'output-websocket',
         ],

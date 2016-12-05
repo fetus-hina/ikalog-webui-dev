@@ -92,6 +92,15 @@ const app = new App({
           botName: 'IkaLog',
         },
         statink: {
+          enabled: false,
+          apikey: '',
+          showResponse: false,
+          trackInklings: false,
+          trackSpecialGauge: false,
+          trackSpecialWeapon: false,
+          trackObjective: false,
+          trackSplatZone: false,
+          anonymizer: false, // false, 'others', 'all'
         },
         boyomi: {
           enabled: false,

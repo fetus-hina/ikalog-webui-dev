@@ -232,6 +232,41 @@ export default class App extends Flux {
       });
     });
 
+    // stat.ink
+    this.on('output:changeStatinkEnable', newState => {
+      if (newState !== true && newState !== false) {
+        return;
+      }
+      this.update(state => {
+        state.plugins.output.statink.enabled = newState;
+        return state;
+      });
+    });
+    this.on('output:changeStatinkApiKey', newState => {
+      newState = String(newState);
+      if (newState.match(/^[0-9a-zA-Z_-]{0,43}$/)) {
+        this.update(state => {
+          state.plugins.output.statink.apikey = newState;
+          return state;
+        });
+      }
+    });
+    this.on('output:changeStatinkFlag', newState => {
+      this.update(state => {
+        state.plugins.output.statink = newState;
+        return state;
+      });
+    });
+    this.on('output:changeStatinkAnonymizer', newState => {
+      if (newState !== false && newState !== 'other' && newState !== 'all') {
+        return;
+      }
+      this.update(state => {
+        state.plugins.output.statink.anonymizer = newState;
+        return state;
+      });
+    });
+
     // 棒読みちゃん
     this.on('output:changeBoyomiEnable', newState => {
       if (newState !== true && newState !== false) {
