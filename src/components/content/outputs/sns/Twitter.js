@@ -20,7 +20,7 @@
 
 import React from 'react';
 import { Component } from 'flumpt';
-import { Checkbox, RadioButton } from '../../../elements';
+import { WrappedCheckbox, WrappedRadioButton, LabeledInput } from '../../../elements';
 
 const INDENT = 'push-xs-1 col-xs-11';
 const t = (text) => window.i18n.t(text, {ns: 'output-sns'});
@@ -47,14 +47,12 @@ export default class Twitter extends Component {
           <span className="fa fa-twitter fa-fw" />
           {t('Twitter')}
         </legend>
-        <div className="form-group">
-          <Checkbox
-              name="output-tw-enable"
-              checked={!!this.props.plugins.output.twitter.enabled}
-              text={t('Post game results to Twitter')}
-              onChange={this._onChangeEnable}
-            />
-        </div>
+        <WrappedCheckbox
+            name="output-tw-enable"
+            checked={!!this.props.plugins.output.twitter.enabled}
+            text={t('Post game results to Twitter')}
+            onChange={this._onChangeEnable}
+        />
         {input}
       </fieldset>
     );
@@ -72,60 +70,43 @@ export default class Twitter extends Component {
   _renderInputOptions() {
     return (
       <div>
-        <div className="form-group">
-          <Checkbox
-              name="output-tw-use-reply"
-              checked={!!this.props.plugins.output.twitter.useReply}
-              text={t("Reply to @_ikalog_ to keep my followers' timeline clean")}
-              onChange={e => {this._onToggleFlag(e, 'useReply')}}
-            />
-        </div>
-        <div className="form-group">
-          <Checkbox
-              name="output-tw-screenshot"
-              checked={!!this.props.plugins.output.twitter.sendScreenShot}
-              text={t('Attach a scoreboard')}
-              onChange={e => {this._onToggleFlag(e, 'sendScreenShot')}}
-            />
-        </div>
-        <div className="form-group">
-          <Checkbox
-              name="output-tw-myscore"
-              checked={!!this.props.plugins.output.twitter.sendMyScore}
-              text={t('Include my score')}
-              onChange={e => {this._onToggleFlag(e, 'sendMyScore')}}
-            />
-        </div>
-        <div className="form-group">
-          <Checkbox
-              name="output-tw-kd"
-              checked={!!this.props.plugins.output.twitter.sendKDRatio}
-              text={t('Include my K/D ratio')}
-              onChange={e => {this._onToggleFlag(e, 'sendKDRatio')}}
-            />
-        </div>
-        <div className="form-group">
-          <Checkbox
-              name="output-tw-rank"
-              checked={!!this.props.plugins.output.twitter.sendRank}
-              text={t('Include my rank in ranked mode')}
-              onChange={e => {this._onToggleFlag(e, 'sendRank')}}
-            />
-        </div>
-        <div className="form-group">
-          <label htmlFor="output-tw-msg">
-            {t('Additional message')}:
-          </label>
-          <input
-              type="text"
-              className="form-control"
-              name="output-tw-msg"
-              id="output-tw-msg"
-              value={this.props.plugins.output.twitter.additionalMessage}
-              onChange={this._onMsgChanged}
-              onFocus={e => {e.target.select()}}
-            />
-        </div>
+        <WrappedCheckbox
+            name="output-tw-use-reply"
+            checked={!!this.props.plugins.output.twitter.useReply}
+            text={t("Reply to @_ikalog_ to keep my followers' timeline clean")}
+            onChange={e => {this._onToggleFlag(e, 'useReply')}}
+        />
+        <WrappedCheckbox
+            name="output-tw-screenshot"
+            checked={!!this.props.plugins.output.twitter.sendScreenShot}
+            text={t('Attach a scoreboard')}
+            onChange={e => {this._onToggleFlag(e, 'sendScreenShot')}}
+        />
+        <WrappedCheckbox
+            name="output-tw-myscore"
+            checked={!!this.props.plugins.output.twitter.sendMyScore}
+            text={t('Include my score')}
+            onChange={e => {this._onToggleFlag(e, 'sendMyScore')}}
+        />
+        <WrappedCheckbox
+            name="output-tw-kd"
+            checked={!!this.props.plugins.output.twitter.sendKDRatio}
+            text={t('Include my K/D ratio')}
+            onChange={e => {this._onToggleFlag(e, 'sendKDRatio')}}
+        />
+        <WrappedCheckbox
+            name="output-tw-rank"
+            checked={!!this.props.plugins.output.twitter.sendRank}
+            text={t('Include my rank in ranked mode')}
+            onChange={e => {this._onToggleFlag(e, 'sendRank')}}
+        />
+        <LabeledInput
+            id="output-tw-msg"
+            label={t('Additional message') + ':'}
+            value={this.props.plugins.output.twitter.additionalMessage}
+            onChange={this._onMsgChanged}
+            onFocus={e => {e.target.select()}}
+        />
       </div>
     );
   }
@@ -133,23 +114,19 @@ export default class Twitter extends Component {
   _renderInputKeySwitch() {
     return (
       <div>
-        <div className="form-group">
-          <RadioButton
-              name="output-tw-key"
-              checked={this.props.plugins.output.twitter.useKey == 'builtin'}
-              text={t('Use IkaLog Consumer Key (easy)')}
-              onChange={e => this._onChangeUseKey(e, 'builtin')}
-              disabled={!this.props.system.hasBuiltinTwitterToken}
-            />
-        </div>
-        <div className="form-group">
-          <RadioButton
-              name="output-tw-key"
-              checked={this.props.plugins.output.twitter.useKey == 'own'}
-              text={t('Use you own Consumer Key')}
-              onChange={e => this._onChangeUseKey(e, 'own')}
-            />
-        </div>
+        <WrappedRadioButton
+            name="output-tw-key"
+            checked={this.props.plugins.output.twitter.useKey == 'builtin'}
+            text={t('Use IkaLog Consumer Key (easy)')}
+            onChange={e => this._onChangeUseKey(e, 'builtin')}
+            disabled={!this.props.system.hasBuiltinTwitterToken}
+        />
+        <WrappedRadioButton
+            name="output-tw-key"
+            checked={this.props.plugins.output.twitter.useKey == 'own'}
+            text={t('Use you own Consumer Key')}
+            onChange={e => this._onChangeUseKey(e, 'own')}
+        />
         {this._renderInputKeys()}
       </div>
     );
@@ -158,84 +135,62 @@ export default class Twitter extends Component {
   _renderInputKeys() {
     const isBuiltin = this.props.plugins.output.twitter.useKey === 'builtin';
     const isOwn     = this.props.plugins.output.twitter.useKey === 'own';
-    if (isBuiltin || isOwn) {
-      const consumerKey    = isBuiltin ? t('(Builtin)') : this.props.plugins.output.twitter.consumerKey;
-      const consumerSecret = isBuiltin ? t('(Builtin)') : this.props.plugins.output.twitter.consumerSecret;
-      const accessToken    = this.props.plugins.output.twitter.accessToken;
-      const accessSecret   = this.props.plugins.output.twitter.accessSecret;
-
-      const csOrAuth = isBuiltin
-          ? (
-            <div>
-              <button type="button" className="btn btn-outline-primary">
-                <span className="fa fa-fw fa-twitter" />
-                {t('Authenticate')}
-              </button>
-            </div>
-          )
-          : (
-            <div>
-              <div className="form-group">
-                <label htmlFor="output-tw-ck">
-                  {t('Consumer Key')}:
-                </label>
-                <input
-                    type="text"
-                    className="form-control"
-                    id="output-tw-ck"
-                    value={consumerKey}
-                    onChange={this._onChangeConsumerKey}
-                  />
-              </div>
-              <div className="form-group">
-                <label htmlFor="output-tw-cs">
-                  {t('Consumer Secret')}:
-                </label>
-                <input
-                    type="text"
-                    className="form-control"
-                    id="output-tw-cs"
-                    value={consumerSecret}
-                    onChange={this._onChangeConsumerSecret}
-                  />
-              </div>
-            </div>
-          );
-
-      return (
-        <div className={INDENT}>
-          {csOrAuth}
-          <div className="form-group">
-            <label htmlFor="output-tw-tk">
-              {t('Access Token')}:
-            </label>
-            <input
-                type="text"
-                className="form-control"
-                id="output-tw-tk"
-                value={accessToken}
-                onChange={this._onChangeAccessToken}
-                disabled={isBuiltin}
-              />
-          </div>
-          <div className="form-group">
-            <label htmlFor="output-tw-ts">
-              {t('Access Token Secret')}:
-            </label>
-            <input
-                type="text"
-                className="form-control"
-                id="output-tw-ts"
-                value={accessSecret}
-                onChange={this._onChangeAccessSecret}
-                disabled={isBuiltin}
-              />
-          </div>
-        </div>
-      );
+    if (!isBuiltin && !isOwn) {
+      return null;
     }
-    return null; // 明示的にnullを返さないとエラーになる
+
+    const consumerKey    = isBuiltin ? t('(Builtin)') : this.props.plugins.output.twitter.consumerKey;
+    const consumerSecret = isBuiltin ? t('(Builtin)') : this.props.plugins.output.twitter.consumerSecret;
+    const accessToken    = this.props.plugins.output.twitter.accessToken;
+    const accessSecret   = this.props.plugins.output.twitter.accessSecret;
+
+    const csOrAuth = isBuiltin
+        ? (
+          <div>
+            <button type="button" className="btn btn-outline-primary">
+              <span className="fa fa-fw fa-twitter" />
+              {t('Authenticate')}
+            </button>
+          </div>
+        )
+        : (
+          <div>
+            <LabeledInput
+                id="output-tw-ck"
+                label={t('Consumer Key') + ':'}
+                value={consumerKey}
+                onChange={this._onChangeConsumerKey}
+            />
+            <LabeledInput
+                id="output-tw-cs"
+                label={t('Consumer Secret') + ':'}
+                value={consumerSecret}
+                onChange={this._onChangeConsumerSecret}
+            />
+          </div>
+        );
+
+    return (
+      <div className={INDENT}>
+        {csOrAuth}
+        <LabeledInput
+            id="output-tw-tk"
+            label={t('Access Token') + ':'}
+            value={accessToken}
+            onChange={this._onChangeAccessToken}
+            disabled={isBuiltin}
+        />
+        <LabeledInput
+            id="output-tw-ts"
+            label={t('Access Token Secret') + ':'}
+            value={accessSecret}
+            onChange={this._onChangeAccessSecret}
+            disabled={isBuiltin}
+        />
+      </div>
+    );
   }
+
   _onChangeEnable() {
     this.dispatch('output:changeTwitterEnable', !this.props.plugins.output.twitter.enabled);
   }

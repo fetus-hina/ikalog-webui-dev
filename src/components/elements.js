@@ -88,6 +88,8 @@ export class LabeledInput extends Component {
   //   onChange: callback
   render() {
     const inputType = this.props.type || 'text';
+    const readonly = !!this.props.readonly;
+    const disabled = !!this.props.disabled;
     return (
       <div className="form-group">
         <label htmlFor={this.props.id}>
@@ -101,6 +103,8 @@ export class LabeledInput extends Component {
             value={this.props.value}
             onChange={this.props.onChange}
             onFocus={e => {e.target.select()}}
+            readonly={readonly}
+            disabled={disabled}
         />
       </div>
     );
