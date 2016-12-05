@@ -147,20 +147,20 @@ class ApiKey extends Component {
 class Anonymizer extends Component {
   constructor(props) {
     super(props);
+    this._onToggle = this._onToggle.bind(this);
     this._onChange = this._onChange.bind(this);
   }
 
   render() {
     return (
       <div>
-        <p>{t('Anonymizer (Hide player names)')}:</p>
+        <WrappedCheckbox
+            name="output-statink-anon-onoff"
+            checked={this.props.plugins.output.statink.anonymizer !== false}
+            text={t('Enable anonymizer (Hide player names)')}
+            onChange={this._onToggle}
+          />
         <div className={INDENT}>
-          <WrappedRadioButton
-              name="output-statink-anon"
-              checked={this.props.plugins.output.statink.anonymizer === false}
-              text={t('Disabled')}
-              onChange={() => this._onChange(false)}
-            />
           <WrappedRadioButton
               name="output-statink-anon"
               checked={this.props.plugins.output.statink.anonymizer === 'other'}
@@ -176,6 +176,14 @@ class Anonymizer extends Component {
         </div>
       </div>
     );
+  }
+
+  _onToggle() {
+    if (this.props.plugins.output.statink.anonymizer === false) {
+      this._onChange('other');
+    } else {
+      this._onChange(false);
+    }
   }
 
   _onChange(newState) {

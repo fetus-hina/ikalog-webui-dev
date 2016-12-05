@@ -1,8 +1,8 @@
 {
   "API Key": "APIキー",
   "All players": "全員",
-  "Anonymizer (Hide player names)": "匿名化（スクリーンショットのプレーヤー名を隠す）",
   "Disabled": "無効",
+  "Enable anonymizer (Hide player names)": "匿名化（スクリーンショットのプレーヤー名を隠す）を有効にする",
   "Include Special Weapons (experimental)": "投稿内容にスペシャル発動を含める (experimental)",
   "Include Special gauge (experimental)": "投稿内容にスペシャルの溜まり具合を含める (experimental)",
   "Include SplatZone counters (experimental)": "投稿内容にガチエリアのカウント情報を含める（experimental)",
