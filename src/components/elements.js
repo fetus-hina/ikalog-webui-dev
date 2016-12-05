@@ -78,3 +78,31 @@ export class WrappedCheckbox extends Component {
     );
   }
 }
+
+export class LabeledInput extends Component {
+  // props:
+  //   id: id of input element
+  //   label: label text. ":" needed.
+  //   type: "text" "url" and so on. optional.
+  //   value: default value
+  //   onChange: callback
+  render() {
+    const inputType = this.props.type || 'text';
+    return (
+      <div className="form-group">
+        <label htmlFor={this.props.id}>
+          {this.props.label}
+        </label>
+        <input
+            className="form-control"
+            type={inputType}
+            id={this.props.id}
+            checked={this.props.checked}
+            value={this.props.value}
+            onChange={this.props.onChange}
+            onFocus={e => {e.target.select()}}
+        />
+      </div>
+    );
+  }
+}

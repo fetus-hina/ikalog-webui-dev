@@ -20,7 +20,7 @@
 
 import React from 'react';
 import { Component } from 'flumpt';
-import { Checkbox, RadioButton, WrappedCheckbox, WrappedRadioButton } from '../../elements';
+import { Checkbox, LabeledInput, RadioButton, WrappedCheckbox, WrappedRadioButton } from '../../elements';
 
 const INDENT = 'push-xs-1 col-xs-11';
 const t = (text) => window.i18n.t(text, {ns: 'output-statink'});
@@ -121,21 +121,12 @@ class ApiKey extends Component {
   }
 
   render() {
-    return (
-      <div className="form-group">
-        <label htmlFor="output-statink-apikey">
-          {t('API Key')}:
-        </label>
-        <input
-            type="text"
-            className="form-control"
-            id="output-statink-apikey"
-            value={this.props.plugins.output.statink.apikey}
-            onChange={this._onChange}
-            onFocus={e => {e.target.select()}}
-          />
-      </div>
-    );
+    return <LabeledInput
+        label={t('API Key') + ':'}
+        id="output-statink-apikey"
+        value={this.props.plugins.output.statink.apikey}
+        onChange={this._onChange}
+    />;
   }
 
   _onChange(e) {
