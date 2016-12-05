@@ -46,6 +46,11 @@ export default class Twitter extends Component {
         <legend>
           <span className="fa fa-twitter fa-fw" />
           {t('Twitter')}
+          <small>
+            <a href="https://twitter.com" target="_blank">
+              <span className="fa fa-external-link fa-fw" />
+            </a>
+          </small>
         </legend>
         <WrappedCheckbox
             name="output-tw-enable"
@@ -112,6 +117,15 @@ export default class Twitter extends Component {
   }
 
   _renderInputKeySwitch() {
+    const customKeyLabel = (
+      <span>
+        {t('Use your own Consumer Key')}
+        <a href="https://apps.twitter.com/" target="_blank">
+          <span className="fa fa-fw fa-external-link" />
+        </a>
+      </span>
+    );
+
     return (
       <div>
         <WrappedRadioButton
@@ -124,7 +138,7 @@ export default class Twitter extends Component {
         <WrappedRadioButton
             name="output-tw-key"
             checked={this.props.plugins.output.twitter.useKey == 'own'}
-            text={t('Use you own Consumer Key')}
+            text={customKeyLabel}
             onChange={e => this._onChangeUseKey(e, 'own')}
         />
         {this._renderInputKeys()}
@@ -150,6 +164,7 @@ export default class Twitter extends Component {
             <button type="button" className="btn btn-outline-primary">
               <span className="fa fa-fw fa-twitter" />
               {t('Authenticate')}
+              <span className="fa fa-fw fa-external-link-square" />
             </button>
           </div>
         )

@@ -41,6 +41,11 @@ export default class Slack extends Component {
         <legend>
           <span className="fa fa-slack fa-fw" />
           {t('Slack')}
+          <small>
+            <a href="https://slack.com/" target="_blank">
+              <span className="fa fa-external-link fa-fw" />
+            </a>
+          </small>
         </legend>
         <WrappedCheckbox
             name="output-slack-enable"
@@ -54,11 +59,19 @@ export default class Slack extends Component {
   }
 
   _renderInput() {
+    const webhookLabel = (
+      <span>
+        {t('Incoming WebHook API URL') + ':'}
+        <a href="https://my.slack.com/services/new/incoming-webhook/" target="_blank">
+          <span className="fa fa-fw fa-external-link" />
+        </a>
+      </span>
+    );
     return (
       <div className={INDENT}>
         <LabeledInput
             id="output-slack-url"
-            label={t('Incoming WebHook API URL') + ':'}
+            label={webhookLabel}
             value={this.props.plugins.output.slack.webhook}
             onChange={this._onChangeUrl}
             placeholder="https://hooks.slack.com/services/AAAAAAAAA/BBBBBBBBB/CCCCCCCCCCCCCCCCCCCCCCCC"
