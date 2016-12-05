@@ -88,6 +88,7 @@ export class LabeledInput extends Component {
   //   onChange: callback
   render() {
     const inputType = this.props.type || 'text';
+    const placeholder = this.props.placeholder || '';
     const readonly = !!this.props.readonly;
     const disabled = !!this.props.disabled;
     return (
@@ -101,6 +102,7 @@ export class LabeledInput extends Component {
             id={this.props.id}
             checked={this.props.checked}
             value={this.props.value}
+            placeholder={placeholder}
             onChange={this.props.onChange}
             onFocus={e => {e.target.select()}}
             readonly={readonly}

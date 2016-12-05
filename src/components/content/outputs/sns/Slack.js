@@ -20,7 +20,7 @@
 
 import React from 'react';
 import { Component } from 'flumpt';
-import { Checkbox } from '../../../elements';
+import { WrappedCheckbox, LabeledInput } from '../../../elements';
 
 const INDENT = 'push-xs-1 col-xs-11';
 const t = (text) => window.i18n.t(text, {ns: 'output-sns'});
@@ -42,48 +42,33 @@ export default class Slack extends Component {
           <span className="fa fa-slack fa-fw" />
           {t('Slack')}
         </legend>
-        <div className="form-group">
-          <Checkbox
-              name="output-slack-enable"
-              checked={!!this.props.plugins.output.slack.enabled}
-              text={t('Post game results to a Slack channel')}
-              onChange={this._onChangeEnable}
-            />
-          {input}
-        </div>
+        <WrappedCheckbox
+            name="output-slack-enable"
+            checked={!!this.props.plugins.output.slack.enabled}
+            text={t('Post game results to a Slack channel')}
+            onChange={this._onChangeEnable}
+        />
+        {input}
       </fieldset>
     );
   }
 
   _renderInput() {
     return (
-      <div className="row">
-        <div className={INDENT}>
-          <label htmlFor="output-slack-url">
-            {t('Incoming WebHook API URL')}:
-          </label>
-          <input
-              type="url"
-              className="form-control"
-              id="output-slack-url"
-              value={this.props.plugins.output.slack.webhook}
-              onChange={this._onChangeUrl}
-              onFocus={e => {e.target.select()}}
-              placeholder="https://hooks.slack.com/services/AAAAAAAAA/BBBBBBBBB/CCCCCCCCCCCCCCCCCCCCCCCC"
-            />
-
-          <label htmlFor="output-slack-name">
-            {t('Bot name')}:
-          </label>
-          <input
-              type="text"
-              className="form-control"
-              id="output-slack-name"
-              value={this.props.plugins.output.slack.botName}
-              onChange={this._onChangeBotName}
-              onFocus={e => {e.target.select()}}
-            />
-        </div>
+      <div className={INDENT}>
+        <LabeledInput
+            id="output-slack-url"
+            label={t('Incoming WebHook API URL') + ':'}
+            value={this.props.plugins.output.slack.webhook}
+            onChange={this._onChangeUrl}
+            placeholder="https://hooks.slack.com/services/AAAAAAAAA/BBBBBBBBB/CCCCCCCCCCCCCCCCCCCCCCCC"
+        />
+        <LabeledInput
+            id="output-slack-name"
+            label={t('Bot name') + ':'}
+            value={this.props.plugins.output.slack.botName}
+            onChange={this._onChangeBotName}
+        />
       </div>
     );
   }
