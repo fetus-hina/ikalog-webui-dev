@@ -20,7 +20,7 @@
 
 import React from 'react';
 import { Component } from 'flumpt';
-import { RadioButton, Checkbox } from '../elements';
+import { WrappedRadioButton, WrappedCheckbox, LabeledInput } from '../elements';
 
 const RADIO_NAME = 'radio-9964c174-5d60-485a-b75d-ec15c80609f8';
 const INDENT = 'push-xs-1 col-xs-11';
@@ -62,13 +62,12 @@ class Amarec extends Component {
       return null;
     }
     return (
-      <div className="form-group">
-        <RadioButton
-            name={RADIO_NAME}
-            checked={this.props.plugins.input.driver === 'amarec'}
-            onChange={this._onChange}
-            text={t('Capture through AmarecTV')} />
-      </div>
+      <WrappedRadioButton
+          name={RADIO_NAME}
+          checked={this.props.plugins.input.driver === 'amarec'}
+          onChange={this._onChange}
+          text={t('Capture through AmarecTV')}
+      />
     );
   }
 
@@ -88,12 +87,13 @@ class DirectShow extends Component {
       return null;
     }
     return (
-      <div className="form-group">
-        <RadioButton
+      <div>
+        <WrappedRadioButton
             name={RADIO_NAME}
             checked={this.props.plugins.input.driver === 'directshow'}
             onChange={this._onChange}
-            text={t('HDMI video input (DirectShow, recommended)')} />
+            text={t('HDMI video input (DirectShow, recommended)')}
+        />
         <DeviceList driver="directshow" {...this.props} />
       </div>
     );
@@ -112,12 +112,13 @@ class OpenCV extends Component {
 
   render() {
     return (
-      <div className="form-group">
-        <RadioButton
+      <div>
+        <WrappedRadioButton
             name={RADIO_NAME}
             checked={this.props.plugins.input.driver === 'opencv'}
             onChange={this._onChange}
-            text={t('HDMI video input (OpenCV driver)')} />
+            text={t('HDMI video input (OpenCV driver)')}
+        />
         <DeviceList driver="opencv" {...this.props} />
       </div>
     );
@@ -136,12 +137,13 @@ class Capture extends Component {
 
   render() {
     return (
-      <div className="form-group">
-        <RadioButton
+      <div>
+        <WrappedRadioButton
             name={RADIO_NAME}
             checked={this.props.plugins.input.driver === 'capture'}
             onChange={this._onChange}
-            text={t('Realtime capture from desktop')} />
+            text={t('Realtime capture from desktop')}
+        />
         <CalibrateButtons {...this.props} />
       </div>
     );
@@ -196,12 +198,13 @@ class File extends Component {
 
   render() {
     return (
-      <div className="form-group">
-        <RadioButton
+      <div>
+        <WrappedRadioButton
             name={RADIO_NAME}
             checked={this.props.plugins.input.driver === 'file'}
             onChange={this._onChange}
-            text={t('Read from pre-recorded video file (for testing)')} />
+            text={t('Read from pre-recorded video file (for testing)')}
+        />
         <FileSettings {...this.props} />
       </div>
     );
@@ -225,27 +228,17 @@ class FileSettings extends Component {
     }
     return (
       <div className={INDENT}>
-        <div className="form-group">
-          <label htmlFor="input-file-name">
-            {t('Video file path')}:
-          </label>
-          <input
-              className="form-control"
-              type="text"
-              id="input-file-name"
-              value={this.props.plugins.input.filePath}
-              onChange={this._onChangeFilename}
-              onFocus={e => {e.target.select()}}
-            />
-        </div>
-        <div className="form-group">
-          <Checkbox
-              type="checkbox"
-              checked={this.props.plugins.input.fileDeinterlace}
-              onChange={this._onChangeDeinterlace}
-              text={t('Enable deinterlacing (experimental)')}
-            />
-        </div>
+        <LabeledInput
+            id="input-file-name"
+            label={t('Video file path') + ':'}
+            value={this.props.plugins.input.filePath}
+            onChange={this._onChangeFilename}
+        />
+        <WrappedCheckbox
+            checked={this.props.plugins.input.fileDeinterlace}
+            onChange={this._onChangeDeinterlace}
+            text={t('Enable deinterlacing (experimental)')}
+        />
       </div>
     );
   }
@@ -275,8 +268,8 @@ class DeviceList extends Component {
       this._onReload();
     }
     return (
-      <div className="row">
-        <div className={INDENT}>
+      <div className={INDENT}>
+        <div className="form-group">
           <select
               id="device"
               className="form-control mb-1"
@@ -284,18 +277,14 @@ class DeviceList extends Component {
               defaultValue={this.props.plugins.input.device}
               onChange={this._onChange}
           >
-            {devices.map(device =>
-              <option value={device}>
-                {device}
-              </option>
-            )}
+            {devices.map(device => <option value={device}>{device}</option>)}
           </select>
-          <div className="text-xs-right">
-            <button className="btn btn-secondary" onClick={this._onReload}>
-              <span className="fa fa-refresh fa-fw" />
-              {t('Reload')}
-            </button>
-          </div>
+        </div>
+        <div className="form-group text-xs-right">
+          <button className="btn btn-secondary" onClick={this._onReload}>
+            <span className="fa fa-refresh fa-fw" />
+            {t('Reload')}
+          </button>
         </div>
       </div>
     );
