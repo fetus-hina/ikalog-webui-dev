@@ -25,13 +25,14 @@ import File from './outputs/File';
 import Sns from './outputs/Sns';
 import Statink from './outputs/Statink';
 import Speech from './outputs/Speech';
+import Autoit from './outputs/Autoit';
 import WebSocket from './outputs/WebSocket';
 
 const t = (text, ns) => window.i18n.t(text, {ns: ns});
 
 export default class OutputPlugin extends Component {
   render() {
-    const content = ((tab) => {
+    const content = (tab => {
       switch (tab) {
         case 'file':
           return <File {...this.props} />;
@@ -44,6 +45,9 @@ export default class OutputPlugin extends Component {
 
         case 'speech':
           return <Speech {...this.props} />;
+
+        case 'autoit':
+          return <Autoit {...this.props} />;
 
         case 'websocket':
           return <WebSocket {...this.props} />;
@@ -61,7 +65,7 @@ export default class OutputPlugin extends Component {
             <NavItem text='SNS'        target='sns'       {...this.props} />
             <NavItem text='stat.ink'   target='statink'   {...this.props} />
             <NavItem text='Speech App' target='speech'    {...this.props} />
-            <NavItem text='Recording'  target='recording' {...this.props} />
+            <NavItem text='Recording'  target='autoit'    {...this.props} />
             <NavItem text='WebSocket'  target='websocket' {...this.props} />
           </ul>
         </div>

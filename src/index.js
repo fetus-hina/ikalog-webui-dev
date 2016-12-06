@@ -112,6 +112,12 @@ const app = new App({
           host: '127.0.0.1',
           port: 50082,
         },
+        autoit: {
+          enabled: false,
+          rename: false,
+          scriptPath: 'C:\\Path\\to\\Script.au3',
+          outputPath: '',
+        },
         websocket: {
           enabled: true,
           // host: '0.0.0.0',

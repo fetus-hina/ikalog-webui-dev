@@ -105,7 +105,7 @@ export class LabeledInput extends Component {
             placeholder={placeholder}
             onChange={this.props.onChange}
             onFocus={e => {e.target.select()}}
-            readonly={readonly}
+            readOnly={readonly}
             disabled={disabled}
         />
       </div>

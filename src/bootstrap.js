@@ -57,6 +57,7 @@ export function initI18Next(defaultLang) {
           'output-sns',
           'output-statink',
           'output-speech',
+          'output-autoit',
           'output-websocket',
         ],
         defaultNS: 'app',
