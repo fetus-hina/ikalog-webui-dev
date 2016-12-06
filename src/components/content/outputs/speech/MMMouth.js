@@ -20,7 +20,7 @@
 
 import React from 'react';
 import { Component } from 'flumpt';
-import { Checkbox } from '../../../elements';
+import { WrappedCheckbox, LabeledInput } from '../../../elements';
 
 const INDENT = 'push-xs-1 col-xs-11';
 const t = (text) => window.i18n.t(text, {ns: 'output-speech'});
@@ -46,15 +46,13 @@ export default class MMMouth extends Component {
             </a>
           </small>
         </legend>
-        <div className="form-group">
-          <Checkbox
-              name="output-mikumikumouth-enable"
-              checked={!!this.props.plugins.output.mikumikumouth.enabled}
-              text={t('Enable TCP server for MikuMikuMouth')}
-              onChange={this._onChangeEnable}
-            />
-          {input}
-        </div>
+        <WrappedCheckbox
+            name="output-mikumikumouth-enable"
+            checked={!!this.props.plugins.output.mikumikumouth.enabled}
+            text={t('Enable TCP server for MikuMikuMouth')}
+            onChange={this._onChangeEnable}
+        />
+        {input}
       </fieldset>
     );
   }
@@ -62,34 +60,21 @@ export default class MMMouth extends Component {
   _renderInput() {
     return (
       <div className={INDENT}>
-        <div className="form-group">
-          <label htmlFor="output-mikumikumouth-host">
-            {t('Host')}:
-          </label>
-          <input
-              type="text"
-              className="form-control"
-              id="output-mikumikumouth-host"
-              value={this.props.plugins.output.mikumikumouth.host}
-              onChange={this._onChangeHost}
-              onFocus={e => {e.target.select()}}
-              placeholder={t('Example') + ': 127.0.0.1'}
-            />
-        </div>
-        <div className="form-group">
-          <label htmlFor="output-mikumikumouth-port">
-            {t('Port')}:
-          </label>
-          <input
-              type="text"
-              className="form-control"
-              id="output-mikumikumouth-port"
-              value={this.props.plugins.output.mikumikumouth.port}
-              onChange={this._onChangePort}
-              onFocus={e => {e.target.select()}}
-              placeholder={t('Example') + ': 50001'}
-            />
-        </div>
+        <LabeledInput
+            id="output-mikumikumouth-host"
+            label={t('Host') + ':'}
+            value={this.props.plugins.output.mikumikumouth.host}
+            onChange={this._onChangeHost}
+            placeholder={t('Example') + ': 127.0.0.1'}
+        />
+        <LabeledInput
+            id="output-mikumikumouth-port"
+            label={t('Port') + ':'}
+            type="number"
+            value={this.props.plugins.output.mikumikumouth.port}
+            onChange={this._onChangePort}
+            placeholder={t('Example') + ': 50001'}
+        />
       </div>
     );
   }

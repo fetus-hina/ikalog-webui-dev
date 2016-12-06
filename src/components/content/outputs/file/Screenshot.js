@@ -20,7 +20,7 @@
 
 import React from 'react';
 import { Component } from 'flumpt';
-import { Checkbox } from '../../../elements';
+import { WrappedCheckbox, LabeledInput } from '../../../elements';
 
 const INDENT = 'push-xs-1 col-xs-11';
 const t = (text) => window.i18n.t(text, {ns: 'output-file'});
@@ -41,36 +41,26 @@ export default class Screenshot extends Component {
           <span className="fa fa-file-image-o fa-fw" />
           {t('Screenshot')}
         </legend>
-        <div className="form-group">
-          <Checkbox
-              name="output-screenshot-enable"
-              checked={!!this.props.plugins.output.screenshot.enabled}
-              text={t('Save screenshots of game results')}
-              onChange={this._onChangeEnable}
-            />
-          {input}
-        </div>
+        <WrappedCheckbox
+            name="output-screenshot-enable"
+            checked={!!this.props.plugins.output.screenshot.enabled}
+            text={t('Save screenshots of game results')}
+            onChange={this._onChangeEnable}
+        />
+        {input}
       </fieldset>
     );
   }
 
   _renderInput() {
     return (
-      <div className="row">
-        <div className={INDENT}>
-          <label htmlFor="output-screenshot-filepath">
-            {t('Folder to save screenshots')}:
-          </label>
-          <input
-              type="text"
-              className="form-control"
-              id="output-screenshot-filepath"
-              value={this.props.plugins.output.screenshot.path}
-              required={true}
-              onChange={this._onChangePath}
-              onFocus={e => {e.target.select()}}
-            />
-        </div>
+      <div className={INDENT}>
+        <LabeledInput
+            id="output-screenshot-filepath"
+            label={t('Folder to save screenshots') + ':'}
+            value={this.props.plugins.output.screenshot.path}
+            onChange={this._onChangePath}
+        />
       </div>
     );
   }

@@ -20,7 +20,7 @@
 
 import React from 'react';
 import { Component } from 'flumpt';
-import { Checkbox } from '../../../elements';
+import { WrappedCheckbox, LabeledInput } from '../../../elements';
 
 const INDENT = 'push-xs-1 col-xs-11';
 const t = (text) => window.i18n.t(text, {ns: 'output-file'});
@@ -41,36 +41,26 @@ export default class Csv extends Component {
           <span className="fa fa-file-excel-o fa-fw" />
           {t('CSV output')}
         </legend>
-        <div className="form-group">
-          <Checkbox
-              name="output-csv-enable"
-              checked={!!this.props.plugins.output.csv.enabled}
-              text={t('Enable CSV Log')}
-              onChange={this._onChangeEnable}
-            />
-          {input}
-        </div>
+        <WrappedCheckbox
+            name="output-csv-enable"
+            checked={!!this.props.plugins.output.csv.enabled}
+            text={t('Enable CSV Log')}
+            onChange={this._onChangeEnable}
+        />
+        {input}
       </fieldset>
     );
   }
 
   _renderInput() {
     return (
-      <div className="row">
-        <div className={INDENT}>
-          <label htmlFor="output-csv-filepath">
-            {t('Log filename')}:
-          </label>
-          <input
-              type="text"
-              className="form-control"
-              id="output-csv-filepath"
-              value={this.props.plugins.output.csv.path}
-              required={true}
-              onChange={this._onChangePath}
-              onFocus={e => {e.target.select()}}
-            />
-        </div>
+      <div className={INDENT}>
+        <LabeledInput
+            id="output-csv-filepath"
+            label={t('Log filename') + ':'}
+            value={this.props.plugins.output.csv.path}
+            onChange={this._onChangePath}
+        />
       </div>
     );
   }

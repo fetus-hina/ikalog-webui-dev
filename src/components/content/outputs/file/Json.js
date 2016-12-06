@@ -20,7 +20,7 @@
 
 import React from 'react';
 import { Component } from 'flumpt';
-import { Checkbox } from '../../../elements';
+import { WrappedCheckbox, LabeledInput } from '../../../elements';
 
 const INDENT = 'push-xs-1 col-xs-11';
 const t = (text) => window.i18n.t(text, {ns: 'output-file'});
@@ -41,36 +41,26 @@ export default class Json extends Component {
           <span className="fa fa-file-code-o fa-fw"></span>
           {t('JSON output')}
         </legend>
-        <div className="form-group">
-          <Checkbox
-              name="output-json-enable"
-              checked={!!this.props.plugins.output.json.enabled}
-              text={t('Enable JSON Log')}
-              onChange={this._onChangeEnable}
-            />
-          {input}
-        </div>
+        <WrappedCheckbox
+            name="output-json-enable"
+            checked={!!this.props.plugins.output.json.enabled}
+            text={t('Enable JSON Log')}
+            onChange={this._onChangeEnable}
+        />
+        {input}
       </fieldset>
     );
   }
 
   _renderInput() {
     return (
-      <div className="row">
-        <div className={INDENT}>
-          <label htmlFor="output-json-filepath">
-            {t('Log filename')}:
-          </label>
-          <input
-              type="text"
-              className="form-control"
-              id="output-json-filepath"
-              value={this.props.plugins.output.json.path}
-              required={true}
-              onChange={this._onChangePath}
-              onFocus={e => {e.target.select()}}
-            />
-        </div>
+      <div className={INDENT}>
+        <LabeledInput
+            id="output-json-filepath"
+            label={t('Log filename') + ':'}
+            value={this.props.plugins.output.json.path}
+            onChange={this._onChangePath}
+        />
       </div>
     );
   }
