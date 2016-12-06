@@ -99,8 +99,8 @@ export default class App extends Flux {
     });
 
     // キャプチャデバイス一覧再読み込み要求
-    this.on('input:reloadDevices', unusedNewState => {
-      return $.getJSON('/api/capture_devices.json')
+    this.on('input:reloadDevices', () => {
+      return $.getJSON('/api/v1/capture_devices.json', {_: Date.now()})
         .then(json => {
           this.update(state => {
             state.plugins.input.devices = json;
