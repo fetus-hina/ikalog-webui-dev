@@ -21,13 +21,31 @@
 import React from 'react';
 import { Component } from 'flumpt';
 import { RadioButton } from './elements';
+import logoImg30 from '../data/logo-30.png';
+import logoImg60 from '../data/logo-60.png';
+import logoImg90 from '../data/logo-90.png';
 
 class Logo extends Component {
+  constructor(props) {
+    super(props);
+    this._url = this._decideLogo();
+  }
+
   render() {
-    const url = 'https://dl.dropboxusercontent.com/u/14421778/IkaLog/ikalog_logo1.png';
     return (
-      <img src={url} width="30" height="30" className="d-inline-block align-top mr-1" alt="" />
+      <img src={this._url} width="30" height="30" className="d-inline-block align-top mr-1" alt="" />
     );
+  }
+
+  _decideLogo() {
+    const ratio = window ? (window.devicePixelRatio || 1) : 1;
+    if (ratio >= 2.25) {
+      return logoImg90;
+    } else if (ratio >= 1.25) {
+      return logoImg60;
+    } else {
+      return logoImg30;
+    }
   }
 }
 

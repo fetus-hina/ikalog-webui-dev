@@ -22,8 +22,27 @@ import React from 'react';
 import { Component } from 'flumpt';
 import Header from './Header';
 import Content from './Content';
+import favicon from '../data/logo-16.png';
 
 export default class App extends Component {
+  componentDidMount() {
+    if (this.props.chrome.favicon) {
+      return;
+    }
+    
+    document.head.appendChild(
+      (() => {
+        const link = document.createElement('link');
+        link.rel = 'icon';
+        link.type = 'image/png';
+        link.href = favicon;
+        return link;
+      })()
+    );
+
+    this.dispatch('chrome:favicon', true);
+  }
+
   render() {
     return (
       <div>

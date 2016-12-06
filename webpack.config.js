@@ -26,6 +26,7 @@ module.exports = {
       { test: /\.otf/, loader: 'url-loader?mimetype=application/x-font-otf' },
       { test: /\.ttf/, loader: 'url-loader?mimetype=application/x-font-ttf' },
       { test: /\.woff2?/, loader: 'url-loader?mimetype=application/font-woff' },
+      { test: /\.png$/, loader: 'url-loader?mimetype=image/png' },
     ]
   }
 };

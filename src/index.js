@@ -40,6 +40,7 @@ const app = new App({
   },
   initialState: {
     chrome: {
+      favicon: false,
       lang: 'unknown',
       content: 'preview',
       pluginTab: 'file',

@@ -52,6 +52,14 @@ export default class App extends Flux {
       });
     });
 
+    // favicon 設定済みマーク
+    this.on('chrome:favicon', () => {
+      this.update(state => {
+        state.chrome.favicon = true;
+        return state;
+      });
+    });
+
     // メインコンテンツ切り替え
     this.on("chrome:changeContent", newState => {
       if (newState !== 'preview' && newState !== 'input' && newState !== 'output') {
