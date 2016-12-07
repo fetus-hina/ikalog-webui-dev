@@ -30,6 +30,7 @@ export class RadioButton extends Component {
             type="radio"
             name={this.props.name}
             checked={this.props.checked}
+            disabled={this.props.disabled}
             onChange={this.props.onChange} />
         <span className="custom-control-indicator"></span>
         <span className="custom-control-description">
@@ -59,6 +60,7 @@ export class Checkbox extends Component {
             type="checkbox"
             name={this.props.name}
             checked={this.props.checked}
+            disabled={this.props.disabled}
             onChange={this.props.onChange} />
         <span className="custom-control-indicator"></span>
         <span className="custom-control-description">

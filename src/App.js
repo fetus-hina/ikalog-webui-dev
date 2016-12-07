@@ -21,9 +21,22 @@
 import { Flux } from 'flumpt';
 import AppComponent from './components/App';
 import { setUILanguage } from './Utils';
+import endpoints from './endpoints';
 
 export default class App extends Flux {
   subscribe() {
+    // 初期化
+    this.on(":init", () => {
+      const promise = Promise.all([
+        this._getSystemInfo(),
+      ]).then(data => {
+        this.update(state => {
+          state.system = data[0];
+          return state;
+        });
+      });
+    });
+
     // 表示言語切り替え
     this.on("chrome:changelang", newLang => {
       if (newLang !== 'ja' && newLang !== 'en') {
@@ -108,7 +121,7 @@ export default class App extends Flux {
 
     // キャプチャデバイス一覧再読み込み要求
     this.on('input:reloadDevices', () => {
-      return $.getJSON('/api/v1/capture_devices.json', {_: Date.now()})
+      return $.getJSON(endpoints.deviceList, {_: Date.now()})
         .then(json => {
           this.update(state => {
             state.plugins.input.devices = json;
@@ -382,5 +395,15 @@ export default class App extends Flux {
 
   render(state) {
     return <AppComponent {...state} />;
+  }
+
+  _getSystemInfo() {
+    return $.getJSON(endpoints.systemInfo, {_: Date.now()})
+      .then(json => ({
+        hasBuiltinTwitterToken: !!json.twitter_has_preset_key,
+        isWindows: !!json.is_windows,
+        isMacOS: !!json.is_osx,
+        ikalogVersion: json.version,
+      }));
   }
 }

@@ -26,6 +26,11 @@ import favicon from '../data/logo-16.png';
 
 export default class App extends Component {
   componentDidMount() {
+    this._kickInitEvent();
+    this._setFavicon();
+  }
+
+  _setFavicon() {
     if (this.props.chrome.favicon) {
       return;
     }
@@ -43,7 +48,14 @@ export default class App extends Component {
     this.dispatch('chrome:favicon', true);
   }
 
+  _kickInitEvent() {
+    this.dispatch(':init');
+  }
+
   render() {
+    if (!this.props.system || !this.props.plugins) {
+      return <p>Now loading...</p>;
+    }
     return (
       <div>
         <Header {...this.props} />
