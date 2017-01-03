@@ -21,6 +21,8 @@
 const prefix = 'http://127.0.0.1:8888';
 
 export default {
-  systemInfo: `${prefix}/api/v1/webui/system_info`,
-  deviceList: `${prefix}/api/v1/input/devices`,
+  getConfig: `${prefix}/api/v1/config/get`,
+  setConfig: `${prefix}/api/v1/config/set`,
+  //systemInfo: `${prefix}/api/v1/webui/system_info`,
+  //deviceList: `${prefix}/api/v1/input/devices`,
 };

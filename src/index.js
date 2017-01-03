@@ -62,75 +62,81 @@ const app = new App({
         filePath: '',
         devices: [],
       },
-      output: {
-        csv: {
-          enabled: false,
-          path: 'C:\\path\\to\\file.csv',
-        },
-        json: {
-          enabled: false,
-          path: 'C:\\path\\to\\file.json',
-        },
-        screenshot: {
-          enabled: false,
-          path: 'C:\\path\\to\\directory',
-        },
-        twitter: {
-          enabled: false,
-          useReply: true,
-          sendScreenShot: false,
-          sendMyScore: false,
-          sendKDRatio: false,
-          sendRank: false,
-          useKey: 'own', // 'own' or 'builtin'
-          consumerKey: '',
-          consumerSecret: '',
-          accessToken: '',
-          accessSecret: '',
-          additionalMessage: '',
-        },
-        slack: {
-          enabled: false,
-          webhook: 'https://example.com/',
-          botName: 'IkaLog',
-        },
-        statink: {
-          enabled: false,
-          apikey: '',
-          showResponse: false,
-          trackInklings: false,
-          trackSpecialGauge: false,
-          trackSpecialWeapon: false,
-          trackObjective: false,
-          trackSplatZone: false,
-          anonymizer: false, // false, 'others', 'all'
-        },
-        boyomi: {
-          enabled: false,
-          host: '127.0.0.1',
-          port: 50001,
-        },
-        mikumikumouth: {
-          enabled: false,
-          host: '127.0.0.1',
-          port: 50082,
-        },
-        autoit: {
-          enabled: false,
-          rename: false,
-          scriptPath: 'C:\\Path\\to\\Script.au3',
-          outputPath: '',
-        },
-        websocket: {
-          enabled: true,
-          // host: '0.0.0.0',
-          port: 9090,
-        },
-      },
+      output: null,
+      // output: {
+      //   csv: {
+      //     enabled: false,
+      //     path: 'C:\\path\\to\\file.csv',
+      //   },
+      //   json: {
+      //     enabled: false,
+      //     path: 'C:\\path\\to\\file.json',
+      //   },
+      //   screenshot: {
+      //     enabled: false,
+      //     path: 'C:\\path\\to\\directory',
+      //   },
+      //   twitter: {
+      //     enabled: false,
+      //     useReply: true,
+      //     sendScreenShot: false,
+      //     sendMyScore: false,
+      //     sendKDRatio: false,
+      //     sendRank: false,
+      //     useKey: 'own', // 'own' or 'builtin'
+      //     consumerKey: '',
+      //     consumerSecret: '',
+      //     accessToken: '',
+      //     accessSecret: '',
+      //     additionalMessage: '',
+      //   },
+      //   slack: {
+      //     enabled: false,
+      //     webhook: 'https://example.com/',
+      //     botName: 'IkaLog',
+      //   },
+      //   statink: {
+      //     enabled: false,
+      //     apikey: '',
+      //     showResponse: false,
+      //     trackInklings: false,
+      //     trackSpecialGauge: false,
+      //     trackSpecialWeapon: false,
+      //     trackObjective: false,
+      //     trackSplatZone: false,
+      //     anonymizer: false, // false, 'others', 'all'
+      //   },
+      //   boyomi: {
+      //     enabled: false,
+      //     host: '127.0.0.1',
+      //     port: 50001,
+      //   },
+      //   mikumikumouth: {
+      //     enabled: false,
+      //     host: '127.0.0.1',
+      //     port: 50082,
+      //   },
+      //   autoit: {
+      //     enabled: false,
+      //     rename: false,
+      //     scriptPath: 'C:\\Path\\to\\Script.au3',
+      //     outputPath: '',
+      //   },
+      //   websocket: {
+      //     enabled: true,
+      //     // host: '0.0.0.0',
+      //     port: 9090,
+      //   },
+      // },
     },
   },
   middlewares: [
-    (t) => { console.log(t); return t },
+    t => {
+      if (process.env.NODE_ENV !== 'production') {
+        console.log(t);
+      }
+      return t;
+    },
   ],
 });
 window.app = app;

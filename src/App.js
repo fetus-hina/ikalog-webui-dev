@@ -29,9 +29,11 @@ export default class App extends Flux {
     this.on(":init", () => {
       const promise = Promise.all([
         this._getSystemInfo(),
+        this._loadConfig(),
       ]).then(data => {
         this.update(state => {
           state.system = data[0];
+          state.plugins.output = data[1];
           return state;
         });
       });
@@ -398,12 +400,59 @@ export default class App extends Flux {
   }
 
   _getSystemInfo() {
-    return $.getJSON(endpoints.systemInfo, {_: Date.now()})
-      .then(json => ({
-        hasBuiltinTwitterToken: !!json.twitter_has_preset_key,
-        isWindows: !!json.is_windows,
-        isMacOS: !!json.is_osx,
-        ikalogVersion: json.version,
-      }));
+    return new Promise(resolved => {
+      setTimeout(() => {
+        resolved({
+          hasBuiltinTwitterToken: false,
+          isWindows: true,
+          isMacOS: false,
+          ikalogVersion: 'unknown',
+        });
+      }, 1000);
+    });
+    //return $.getJSON(endpoints.systemInfo, {_: Date.now()})
+    //  .then(json => ({
+    //    hasBuiltinTwitterToken: !!json.twitter_has_preset_key,
+    //    isWindows: !!json.is_windows,
+    //    isMacOS: !!json.is_osx,
+    //    ikalogVersion: json.version,
+    //  }));
+  }
+
+  _loadConfig() {
+    return $.getJSON(endpoints.getConfig, {_: Date.now()})
+      .then(json => {
+        if (json.status !== 'ok') {
+          throw new Error('IkaLog error');
+        }
+        const conf = json.configuration;
+        const screenshot = conf.Screenshot;
+        const statink = conf.StatInk;
+        return {
+          screenshot: {
+            enabled: !!screenshot.enabled,
+            path: String(screenshot.dest_dir),
+          },
+          statink: {
+            enabled: !!statink.enabled,
+            apikey: String(statink.api_key),
+            showResponse: !!statink.show_response,
+            trackInklings: !!statink.track_inklings,
+            trackSpecialGauge: !!statink.track_special_gauge,
+            trackSpecialWeapon: !!statink.track_special_weapon,
+            trackObjective: !!statink.track_objective,
+            trackSplatZone: !!statink.track_splatzone,
+            anonymizer: (() => {
+              if (statink.anon_all) {
+                return 'all';
+              }
+              if (statink.anon_others) {
+                return 'others';
+              }
+              return false;
+            })(),
+          },
+        };
+      });
   }
 }

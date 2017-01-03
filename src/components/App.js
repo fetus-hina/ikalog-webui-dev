@@ -54,12 +54,34 @@ export default class App extends Component {
 
   render() {
     if (!this.props.system || !this.props.plugins) {
-      return <p>Now loading...</p>;
+      return <Loading {...this.props} />
     }
     return (
       <div>
         <Header {...this.props} />
         <Content {...this.props} />
+      </div>
+    );
+  }
+}
+
+class Loading extends Component {
+  render() {
+    const outerStyle = {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100%",
+    };
+    const innerStyle = {
+      fontSize: "150px",
+    };
+    return (
+      <div style={outerStyle}>
+        <p>
+          <span className="fa fa-spinner fa-pulse fa-fw" style={innerStyle}></span>
+          <span className="sr-only">Loading...</span>
+        </p>
       </div>
     );
   }
