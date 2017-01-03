@@ -4,8 +4,9 @@
   "description": "",
   "main": "",
   "scripts": {
-    "build": "webpack -d",
-    "watch": "webpack -d --watch"
+    "build": "NODE_ENV=production webpack -p --progress",
+    "debug": "webpack -d --progress",
+    "watch": "webpack -d --progress --watch"
   },
   "author": {
     "name": "Takeshi HASEGAWA",
