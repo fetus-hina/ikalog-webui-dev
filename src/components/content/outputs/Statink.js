@@ -126,6 +126,15 @@ class ApiKey extends Component {
         id="output-statink-apikey"
         value={this.props.plugins.output.statink.apikey}
         onChange={this._onChange}
+        onFocus={ev => {
+          const el = ev.target;
+          el.type = "text";
+          el.select();
+        }}
+        onBlur={ev => {
+          ev.target.type = "password";
+        }}
+        type="password"
     />;
   }
 
