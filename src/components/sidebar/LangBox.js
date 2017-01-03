@@ -32,7 +32,7 @@ export default class LangBox extends Component {
         </div>
         <div className="card-block">
           <UiLang {...this.props} />
-          <GameLang {...this.props} />
+          {/* <GameLang {...this.props} /> */}
         </div>
       </div>
     );
