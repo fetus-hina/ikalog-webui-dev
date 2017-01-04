@@ -140,6 +140,11 @@ export default class App extends Flux {
       });
     });
 
+    this.on('input:takeScreenshot', () => {
+      return $.getJSON(endpoints.takeScreenshot, {_: Date.now()})
+        .then(json => 42);
+    });
+
     // CSV 設定変更
     this.on('output:changeCsvEnable', newState => {
       this.update(state => {
@@ -400,23 +405,18 @@ export default class App extends Flux {
   }
 
   _getSystemInfo() {
-    return new Promise(resolved => {
-      setTimeout(() => {
-        resolved({
+    return $.getJSON(endpoints.systemInfo, {_: Date.now()})
+      .then(json => {
+        if (json.status !== 'ok') {
+          throw new Error('IkaLog error');
+        }
+        return {
           hasBuiltinTwitterToken: false,
-          isWindows: true,
-          isMacOS: false,
-          ikalogVersion: 'unknown',
-        });
-      }, 1000);
-    });
-    //return $.getJSON(endpoints.systemInfo, {_: Date.now()})
-    //  .then(json => ({
-    //    hasBuiltinTwitterToken: !!json.twitter_has_preset_key,
-    //    isWindows: !!json.is_windows,
-    //    isMacOS: !!json.is_osx,
-    //    ikalogVersion: json.version,
-    //  }));
+          isWindows: !!json.is_windows,
+          isMacOS: !!json.is_osx,
+          ikalogVersion: String(json.version),
+        };
+      });
   }
 
   _loadConfig() {
@@ -431,6 +431,7 @@ export default class App extends Flux {
         return {
           screenshot: {
             enabled: !!screenshot.enabled,
+            currentEnabled: !!screenshot.enabled,
             path: String(screenshot.dest_dir),
           },
           statink: {
