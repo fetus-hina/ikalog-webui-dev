@@ -42,8 +42,8 @@ export default class InputPlugin extends Component {
             <Amarec {...this.props} />
             <DirectShow {...this.props} />
             <OpenCV {...this.props} />
-            <Capture {...this.props} />
-            <File {...this.props} />
+            {/* <Capture {...this.props} /> */}
+            {/* <File {...this.props} /> */}
           </fieldset>
         </div>
       </div>
@@ -129,128 +129,128 @@ class OpenCV extends Component {
   }
 }
 
-class Capture extends Component {
-  constructor(props) {
-    super(props);
-    this._onChange = this._onChange.bind(this);
-  }
-
-  render() {
-    return (
-      <div>
-        <WrappedRadioButton
-            name={RADIO_NAME}
-            checked={this.props.plugins.input.driver === 'capture'}
-            onChange={this._onChange}
-            text={t('Realtime capture from desktop')}
-        />
-        <CalibrateButtons {...this.props} />
-      </div>
-    );
-  }
-
-  _onChange() {
-    this.dispatch('input:changeSource', 'capture');
-  }
-}
-
-class CalibrateButtons extends Component {
-  constructor(props) {
-    super(props);
-    this._calibrate = this._calibrate.bind(this);
-    this._reset = this._reset.bind(this);
-  }
-
-  render() {
-    if (this.props.plugins.input.driver !== 'capture') {
-      return null;
-    }
-    return (
-      <div className={INDENT + ' form-group'}>
-        <div className="btn-group">
-          <button type="button" className="btn btn-secondary" onChange={this._calibrate}>
-            <span className="fa fa-search fa-fw" />
-            {t('Calibrate')}
-          </button>
-          <button type="button" className="btn btn-secondary" onChange={this._reset}>
-            <span className="fa fa-undo fa-fw" />
-            {t('Reset')}
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  _calibrate() {
-    this.dispatch('input:calibrate', true);
-  }
-
-  _reset() {
-    this.dispatch('input:calibrate', false);
-  }
-}
-
-class File extends Component {
-  constructor(props) {
-    super(props);
-    this._onChange = this._onChange.bind(this);
-  }
-
-  render() {
-    return (
-      <div>
-        <WrappedRadioButton
-            name={RADIO_NAME}
-            checked={this.props.plugins.input.driver === 'file'}
-            onChange={this._onChange}
-            text={t('Read from pre-recorded video file (for testing)')}
-        />
-        <FileSettings {...this.props} />
-      </div>
-    );
-  }
-
-  _onChange() {
-    this.dispatch('input:changeSource', 'file');
-  }
-}
-
-class FileSettings extends Component {
-  constructor(props) {
-    super(props);
-    this._onChangeFilename = this._onChangeFilename.bind(this);
-    this._onChangeDeinterlace = this._onChangeDeinterlace.bind(this);
-  }
-
-  render() {
-    if (this.props.plugins.input.driver !== 'file') {
-      return null;
-    }
-    return (
-      <div className={INDENT}>
-        <LabeledInput
-            id="input-file-name"
-            label={t('Video file path') + ':'}
-            value={this.props.plugins.input.filePath}
-            onChange={this._onChangeFilename}
-        />
-        <WrappedCheckbox
-            checked={this.props.plugins.input.fileDeinterlace}
-            onChange={this._onChangeDeinterlace}
-            text={t('Enable deinterlacing (experimental)')}
-        />
-      </div>
-    );
-  }
-
-  _onChangeDeinterlace() {
-    this.dispatch('input:changeFileDeinterlace', !this.props.plugins.input.fileDeinterlace);
-  }
-
-  _onChangeFilename(e) {
-    this.dispatch('input:changeFileName', String(e.target.value).trim());
-  }
-}
+// class Capture extends Component {
+//   constructor(props) {
+//     super(props);
+//     this._onChange = this._onChange.bind(this);
+//   }
+// 
+//   render() {
+//     return (
+//       <div>
+//         <WrappedRadioButton
+//             name={RADIO_NAME}
+//             checked={this.props.plugins.input.driver === 'capture'}
+//             onChange={this._onChange}
+//             text={t('Realtime capture from desktop')}
+//         />
+//         <CalibrateButtons {...this.props} />
+//       </div>
+//     );
+//   }
+// 
+//   _onChange() {
+//     this.dispatch('input:changeSource', 'capture');
+//   }
+// }
+// 
+// class CalibrateButtons extends Component {
+//   constructor(props) {
+//     super(props);
+//     this._calibrate = this._calibrate.bind(this);
+//     this._reset = this._reset.bind(this);
+//   }
+// 
+//   render() {
+//     if (this.props.plugins.input.driver !== 'capture') {
+//       return null;
+//     }
+//     return (
+//       <div className={INDENT + ' form-group'}>
+//         <div className="btn-group">
+//           <button type="button" className="btn btn-secondary" onChange={this._calibrate}>
+//             <span className="fa fa-search fa-fw" />
+//             {t('Calibrate')}
+//           </button>
+//           <button type="button" className="btn btn-secondary" onChange={this._reset}>
+//             <span className="fa fa-undo fa-fw" />
+//             {t('Reset')}
+//           </button>
+//         </div>
+//       </div>
+//     );
+//   }
+// 
+//   _calibrate() {
+//     this.dispatch('input:calibrate', true);
+//   }
+// 
+//   _reset() {
+//     this.dispatch('input:calibrate', false);
+//   }
+// }
+// 
+// class File extends Component {
+//   constructor(props) {
+//     super(props);
+//     this._onChange = this._onChange.bind(this);
+//   }
+// 
+//   render() {
+//     return (
+//       <div>
+//         <WrappedRadioButton
+//             name={RADIO_NAME}
+//             checked={this.props.plugins.input.driver === 'file'}
+//             onChange={this._onChange}
+//             text={t('Read from pre-recorded video file (for testing)')}
+//         />
+//         <FileSettings {...this.props} />
+//       </div>
+//     );
+//   }
+// 
+//   _onChange() {
+//     this.dispatch('input:changeSource', 'file');
+//   }
+// }
+// 
+// class FileSettings extends Component {
+//   constructor(props) {
+//     super(props);
+//     this._onChangeFilename = this._onChangeFilename.bind(this);
+//     this._onChangeDeinterlace = this._onChangeDeinterlace.bind(this);
+//   }
+// 
+//   render() {
+//     if (this.props.plugins.input.driver !== 'file') {
+//       return null;
+//     }
+//     return (
+//       <div className={INDENT}>
+//         <LabeledInput
+//             id="input-file-name"
+//             label={t('Video file path') + ':'}
+//             value={this.props.plugins.input.filePath}
+//             onChange={this._onChangeFilename}
+//         />
+//         <WrappedCheckbox
+//             checked={this.props.plugins.input.fileDeinterlace}
+//             onChange={this._onChangeDeinterlace}
+//             text={t('Enable deinterlacing (experimental)')}
+//         />
+//       </div>
+//     );
+//   }
+// 
+//   _onChangeDeinterlace() {
+//     this.dispatch('input:changeFileDeinterlace', !this.props.plugins.input.fileDeinterlace);
+//   }
+// 
+//   _onChangeFilename(e) {
+//     this.dispatch('input:changeFileName', String(e.target.value).trim());
+//   }
+// }
 
 class DeviceList extends Component {
   constructor(props) {
@@ -263,10 +263,11 @@ class DeviceList extends Component {
     if (this.props.plugins.input.driver !== this.props.driver) {
       return null;
     }
-    const devices = this.props.plugins.input.devices;
-    if (devices.length === 0) {
-      this._onReload();
-    }
+    const devices = [];
+    // const devices = this.props.plugins.input.devices;
+    // if (devices.length === 0) {
+    //   this._onReload();
+    // }
     return (
       <div className={INDENT}>
         <div className="form-group">

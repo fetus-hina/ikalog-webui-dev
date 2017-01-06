@@ -34,7 +34,8 @@ export default class App extends Flux {
         data => {
           this.update(state => {
             state.system = data[0];
-            state.plugins.output = data[1];
+            state.plugins.input = data[1].input;
+            state.plugins.output = data[1].output;
             return state;
           });
         },
@@ -496,7 +497,14 @@ export default class App extends Flux {
         const conf = json.configuration;
         const screenshot = conf.Screenshot;
         const statink = conf.StatInk;
-        return {
+
+        const input = {
+          driver: 'amarec',
+          device: null,
+          classes: {},
+        };
+
+        const output = {
           screenshot: {
             enabled: !!screenshot.enabled,
             currentEnabled: !!screenshot.enabled,
@@ -521,6 +529,11 @@ export default class App extends Flux {
               return false;
             })(),
           },
+        };
+
+        return {
+          input: input,
+          output: output,
         };
       });
   }

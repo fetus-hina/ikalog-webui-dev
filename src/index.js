@@ -61,13 +61,19 @@ const app = new App({
     //   isMacOS: false,
     // },
     plugins: {
-      input: {
-        driver: 'amarec',
-        device: null,
-        fileDeinterlace: false,
-        filePath: '',
-        devices: [],
-      },
+      input: null,
+      // input: {
+      //   driver: 'amarec',
+      //   device: null,
+      //   classes: {
+      //     "AVFoundationCapture": [
+      //       { "source": "Blackmagic" },
+      //       { "source": "FaceTime HD Camera (Built-in)" },
+      //     ],
+      //     "CVCapture": [
+      //     ],
+      //   },
+      // },
       output: null,
       // output: {
       //   csv: {
