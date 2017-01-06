@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   entry: {
@@ -28,5 +29,10 @@ module.exports = {
       { test: /\.woff2?/, loader: 'url-loader?mimetype=application/font-woff' },
       { test: /\.png$/, loader: 'url-loader?mimetype=image/png' },
     ]
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    }),
+  ],
 };
