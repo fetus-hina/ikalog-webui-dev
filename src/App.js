@@ -30,13 +30,21 @@ export default class App extends Flux {
       const promise = Promise.all([
         this._getSystemInfo(),
         this._loadConfig(),
-      ]).then(data => {
-        this.update(state => {
-          state.system = data[0];
-          state.plugins.output = data[1];
-          return state;
-        });
-      });
+      ]).then(
+        data => {
+          this.update(state => {
+            state.system = data[0];
+            state.plugins.output = data[1];
+            return state;
+          });
+        },
+        () => {
+          this.update(state => {
+            state.chrome.fatalError = true;
+            return state;
+          });
+        }
+      );
     });
 
     // 通信中に上にかぶせる

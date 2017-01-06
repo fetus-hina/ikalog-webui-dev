@@ -53,6 +53,9 @@ export default class App extends Component {
   }
 
   render() {
+    if (this.props.chrome.fatalError) {
+      return <FatalError {...this.props} />
+    }
     if (!this.props.system || !this.props.plugins) {
       return <Loading {...this.props} />
     }
@@ -82,6 +85,34 @@ class Loading extends Component {
         <p>
           <span className="fa fa-spinner fa-pulse fa-fw" style={innerStyle}></span>
           <span className="sr-only">Loading...</span>
+        </p>
+      </div>
+    );
+  }
+}
+
+class FatalError extends Component {
+  render() {
+    const outerStyle = {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100%",
+      textAlign: "center",
+    };
+    const iconStyle = {
+      fontSize: "150px",
+    };
+    const textStyle = {
+      fontSize: "30px",
+    };
+    return (
+      <div style={outerStyle}>
+        <p>
+          <span className="fa fa-frown-o fa-fw" style={iconStyle}></span><br />
+          <span style={textStyle}>
+            Error 
+          </span>
         </p>
       </div>
     );

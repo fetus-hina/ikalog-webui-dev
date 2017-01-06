@@ -50,6 +50,7 @@ const app = new App({
       pluginTab: 'file',
       lock: false, // true if communicating
       notifications: [],
+      fatalError: false,
     },
     game: {
       lang: 'ja', // FIXME
