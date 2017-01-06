@@ -22,6 +22,7 @@ import React from 'react';
 import { Component } from 'flumpt';
 import Header from './Header';
 import Content from './Content';
+import NotificationSystem from 'react-notification-system';
 import favicon from '../data/logo-16.png';
 
 export default class App extends Component {
@@ -59,11 +60,26 @@ export default class App extends Component {
     if (!this.props.system || !this.props.plugins) {
       return <Loading {...this.props} />
     }
+    return <AppMain {...this.props} />
+  }
+}
+
+class AppMain extends Component {
+  componentDidMount() {
+    window.notifications = this.refs.notificationSystem;
+  }
+
+  componentWillUnmount() {
+    window.notifications = undefined;
+  }
+
+  render() {
     return (
       <div>
         <Header {...this.props} />
         <Content {...this.props} />
         <LockScreen {...this.props} />
+        <NotificationSystem ref="notificationSystem" />
       </div>
     );
   }
@@ -111,7 +127,7 @@ class FatalError extends Component {
         <p>
           <span className="fa fa-frown-o fa-fw" style={iconStyle}></span><br />
           <span style={textStyle}>
-            Error 
+            Error.
           </span>
         </p>
       </div>

@@ -49,7 +49,6 @@ const app = new App({
       content: 'preview',
       pluginTab: 'file',
       lock: false, // true if communicating
-      notifications: [],
       fatalError: false,
     },
     game: {

@@ -172,22 +172,38 @@ export default class App extends Flux {
           .then(
             () => {
               this.update(state => {
-                state.chrome.notifications.push({
-                  level: 'success',
-                  message: window.i18n.t('A screenshot was taken.', {ns: 'input'}),
-                  expires: Date.now() + 1000,
-                });
+                setTimeout(
+                  () => {
+                    if (window.notifications) {
+                      window.notifications.addNotification({
+                        title: window.i18n.t('Screenshot', {ns: 'input'}),
+                        message: window.i18n.t('A screenshot was taken.', {ns: 'input'}),
+                        level: 'success',
+                        position: 'tr',
+                      });
+                    }
+                  },
+                  1
+                );
                 state.tasks.screenshot = null;
                 return state;
               });
             },
             () => {
               this.update(state => {
-                state.chrome.notifications.push({
-                  level: 'error',
-                  message: window.i18n.t('A screenshot was taken.', {ns: 'input'}),
-                  expires: Date.now() + 2000,
-                });
+                setTimeout(
+                  () => {
+                    if (window.notifications) {
+                      window.notifications.addNotification({
+                        title: window.i18n.t('Screenshot', {ns: 'input'}),
+                        message: window.i18n.t('A screenshot was taken.', {ns: 'input'}),
+                        level: 'error',
+                        position: 'tr',
+                      });
+                    }
+                  },
+                  1
+                );
                 state.tasks.screenshot = null;
                 return state;
               });
