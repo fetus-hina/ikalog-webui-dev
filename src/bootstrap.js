@@ -44,7 +44,7 @@ export function initI18Next(defaultLang) {
     i18next
       .use(i18nextBackendXhr)
       .init({
-        debug: true,
+        debug: (process.env.NODE_ENV !== 'production'),
         nsSeparator: '::',
         keySeparator: '..',
         lng: defaultLang,
