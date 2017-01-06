@@ -55,13 +55,17 @@ class CaptureButton extends Component {
   }
 
   render() {
+    const disabled = this.props.tasks.screenshot === 'progress' || !this.props.plugins.output.screenshot.currentEnabled;
+    const icon = this.props.tasks.screenshot === 'progress'
+      ? 'fa fa-fw fa-circle-o-notch fa-spin'
+      : 'fa fa-fw fa-camera'
     return (
       <button
           className="btn btn-secondary"
-          disabled={!this.props.plugins.output.screenshot.currentEnabled}
+          disabled={disabled}
           onClick={this._onClick}
       >
-        <span className="fa fa-camera fa-fw" /> {t('Take a screenshot')}
+        <span className={icon} /> {t('Take a screenshot')}
       </button>
     );
   }

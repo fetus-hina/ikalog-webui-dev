@@ -23,6 +23,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { initBootstrap, initFontAwesome, initI18Next, initAppStyle } from './bootstrap';
 import { getUILanguage } from './Utils';
+import endpoints from './endpoints';
 
 initBootstrap();
 initFontAwesome();
@@ -39,11 +40,16 @@ const app = new App({
     ReactDOM.render(el, document.getElementById('app-root'));
   },
   initialState: {
+    tasks: {
+      screenshot: null,
+    },
     chrome: {
       favicon: false,
       lang: 'unknown',
       content: 'preview',
       pluginTab: 'file',
+      lock: false, // true if communicating
+      notifications: [],
     },
     game: {
       lang: 'ja', // FIXME

@@ -60,6 +60,7 @@ export default class App extends Component {
       <div>
         <Header {...this.props} />
         <Content {...this.props} />
+        <LockScreen {...this.props} />
       </div>
     );
   }
@@ -80,6 +81,38 @@ class Loading extends Component {
       <div style={outerStyle}>
         <p>
           <span className="fa fa-spinner fa-pulse fa-fw" style={innerStyle}></span>
+          <span className="sr-only">Loading...</span>
+        </p>
+      </div>
+    );
+  }
+}
+
+class LockScreen extends Component {
+  render() {
+    if (!this.props.chrome.lock) {
+      return null;
+    }
+    const outerStyle = {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100%",
+      width: "100%",
+      position: "absolute",
+      left: 0,
+      top: 0,
+      zIndex: 65535,
+      backgroundColor: "rgba(0,0,0,.85)",
+    };
+    const innerStyle = {
+      fontSize: "150px",
+      color: "rgba(255,255,255,.5)",
+    };
+    return (
+      <div style={outerStyle}>
+        <p>
+          <span className="fa fa-circle-o-notch fa-spin fa-fw" style={innerStyle}></span>
           <span className="sr-only">Loading...</span>
         </p>
       </div>

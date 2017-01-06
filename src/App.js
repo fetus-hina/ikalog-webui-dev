@@ -39,6 +39,22 @@ export default class App extends Flux {
       });
     });
 
+    // 通信中に上にかぶせる
+    this.on(":start-async-updating", () => {
+      console.log("start-updating");
+      this.update(state => {
+        state.chrome.lock = true;
+        return state;
+      });
+    });
+    this.on(":end-anync-updating", () => {
+      console.log("end-updating");
+      this.update(state => {
+        state.chrome.lock = false;
+        return state;
+      });
+    });
+
     // 表示言語切り替え
     this.on("chrome:changelang", newLang => {
       if (newLang !== 'ja' && newLang !== 'en') {
@@ -140,9 +156,37 @@ export default class App extends Flux {
       });
     });
 
+    // スクリーンショット要求
     this.on('input:takeScreenshot', () => {
-      return $.getJSON(endpoints.takeScreenshot, {_: Date.now()})
-        .then(json => 42);
+      this.update(state => {
+        state.tasks.screenshot = 'progress';
+        $.getJSON(endpoints.takeScreenshot, {_: Date.now()})
+          .then(
+            () => {
+              this.update(state => {
+                state.chrome.notifications.push({
+                  level: 'success',
+                  message: window.i18n.t('A screenshot was taken.', {ns: 'input'}),
+                  expires: Date.now() + 1000,
+                });
+                state.tasks.screenshot = null;
+                return state;
+              });
+            },
+            () => {
+              this.update(state => {
+                state.chrome.notifications.push({
+                  level: 'error',
+                  message: window.i18n.t('A screenshot was taken.', {ns: 'input'}),
+                  expires: Date.now() + 2000,
+                });
+                state.tasks.screenshot = null;
+                return state;
+              });
+            }
+          );
+        return state;
+      });
     });
 
     // CSV 設定変更
