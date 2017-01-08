@@ -86,6 +86,10 @@ class DirectShow extends Component {
     if (!this.props.system.isWindows) {
       return null;
     }
+    const root = this.props.plugins.input.classes.DirectShow;
+    const enabled = root && root.length > 0;
+    const devices = enabled ? root : [];
+
     return (
       <div>
         <WrappedRadioButton
@@ -93,8 +97,9 @@ class DirectShow extends Component {
             checked={this.props.plugins.input.driver === 'directshow'}
             onChange={this._onChange}
             text={t('HDMI video input (DirectShow, recommended)')}
+            disabled={!enabled}
         />
-        <DeviceList driver="directshow" {...this.props} />
+        <DeviceList driver="directshow" devices={devices} {...this.props} />
       </div>
     );
   }
@@ -111,6 +116,10 @@ class OpenCV extends Component {
   }
 
   render() {
+    const root = this.props.plugins.input.classes.CVCapture;
+    const enabled = root && root.length > 0;
+    const devices = enabled ? root : [];
+
     return (
       <div>
         <WrappedRadioButton
@@ -118,8 +127,9 @@ class OpenCV extends Component {
             checked={this.props.plugins.input.driver === 'opencv'}
             onChange={this._onChange}
             text={t('HDMI video input (OpenCV driver)')}
+            disabled={!enabled}
         />
-        <DeviceList driver="opencv" {...this.props} />
+        <DeviceList driver="opencv" devices={devices} {...this.props} />
       </div>
     );
   }
@@ -256,18 +266,13 @@ class DeviceList extends Component {
   constructor(props) {
     super(props);
     this._onChange = this._onChange.bind(this);
-    this._onReload = this._onReload.bind(this);
   }
 
   render() {
     if (this.props.plugins.input.driver !== this.props.driver) {
       return null;
     }
-    const devices = [];
-    // const devices = this.props.plugins.input.devices;
-    // if (devices.length === 0) {
-    //   this._onReload();
-    // }
+    const devices = this.props.devices;
     return (
       <div className={INDENT}>
         <div className="form-group">
@@ -275,27 +280,17 @@ class DeviceList extends Component {
               id="device"
               className="form-control mb-1"
               size="10"
-              defaultValue={this.props.plugins.input.device}
+              defaultValue={JSON.stringify(this.props.plugins.input.device)}
               onChange={this._onChange}
           >
-            {devices.map(device => <option value={device}>{device}</option>)}
+            {devices.map(device => <option value={JSON.stringify(device)}>{device.source}</option>)}
           </select>
-        </div>
-        <div className="form-group text-xs-right">
-          <button className="btn btn-secondary" onClick={this._onReload}>
-            <span className="fa fa-refresh fa-fw" />
-            {t('Reload')}
-          </button>
         </div>
       </div>
     );
   }
 
   _onChange(e) {
-    this.dispatch('input:changeDevice', e.target.value);
-  }
-
-  _onReload() {
-    this.dispatch('input:reloadDevices', '');
+    this.dispatch('input:changeDevice', JSON.parse(e.target.value));
   }
 }

@@ -501,7 +501,7 @@ export default class App extends Flux {
         const input = {
           driver: 'amarec',
           device: null,
-          classes: {},
+          classes: json.configuration.Capture.read_only || {},
         };
 
         const output = {
