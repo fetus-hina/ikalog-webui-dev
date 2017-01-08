@@ -197,7 +197,7 @@ export default class App extends Flux {
                     if (window.notifications) {
                       window.notifications.addNotification({
                         title: window.i18n.t('Screenshot', {ns: 'input'}),
-                        message: window.i18n.t('A screenshot was taken.', {ns: 'input'}),
+                        message: window.i18n.t('Failed to take a screenshot.', {ns: 'input'}),
                         level: 'error',
                         position: 'tr',
                       });
