@@ -62,12 +62,24 @@ class Amarec extends Component {
     if (!this.props.system.isWindows) {
       return null;
     }
+    const dshow = this.props.plugins.input.classes.DirectShow;
+    const enabled = dshow && dshow.length > 0 && (() => {
+      let ret = false;
+      dshow.forEach(val => {
+        if (val.source === 'AmaRec Video Capture') {
+          ret = true;
+        }
+      });
+      return ret;
+    })();
+
     return (
       <WrappedRadioButton
           name={RADIO_NAME}
           checked={this.props.plugins.input.driver === 'amarec'}
           onChange={this._onChange}
           text={t('Capture through AmarecTV')}
+          disabled={!enabled}
       />
     );
   }
