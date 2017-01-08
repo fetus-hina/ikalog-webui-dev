@@ -41,6 +41,7 @@ export default class InputPlugin extends Component {
             </legend>
             <Amarec {...this.props} />
             <DirectShow {...this.props} />
+            <AVFoundationCapture {...this.props} />
             <OpenCV {...this.props} />
             {/* <Capture {...this.props} /> */}
             {/* <File {...this.props} /> */}
@@ -106,6 +107,39 @@ class DirectShow extends Component {
 
   _onChange() {
     this.dispatch('input:changeSource', 'directshow');
+  }
+}
+
+class AVFoundationCapture extends Component {
+  constructor(props) {
+    super(props);
+    this._onChange = this._onChange.bind(this);
+  }
+
+  render() {
+    if (!this.props.system.isMacOS) {
+      return null;
+    }
+    const root = this.props.plugins.input.classes.AVFoundationCapture;
+    const enabled = root && root.length > 0;
+    const devices = enabled ? root : [];
+
+    return (
+      <div>
+        <WrappedRadioButton
+            name={RADIO_NAME}
+            checked={this.props.plugins.input.driver === 'avfoundation'}
+            onChange={this._onChange}
+            text={t('HDMI video input (AVFoundation, recommended)')}
+            disabled={!enabled}
+        />
+        <DeviceList driver="avfoundation" devices={devices} {...this.props} />
+      </div>
+    );
+  }
+
+  _onChange() {
+    this.dispatch('input:changeSource', 'avfoundation');
   }
 }
 
