@@ -25,6 +25,31 @@ import logoImg30 from '../data/logo-30.png';
 import logoImg60 from '../data/logo-60.png';
 import logoImg90 from '../data/logo-90.png';
 
+export default class Header extends Component {
+  render() {
+    return (
+      <header className="navbar navbar-inverse bg-inverse bd-navbar">
+        <div className="container">
+          <nav>
+            <Brand {...this.props} />
+          </nav>
+        </div>
+      </header>
+    );
+  }
+}
+
+class Brand extends Component {
+  render() {
+    return (
+      <h1 className="navbar-brand mb-0">
+        <Logo {...this.props} />
+        IkaLog
+      </h1>
+    );
+  }
+}
+
 class Logo extends Component {
   constructor(props) {
     super(props);
@@ -33,7 +58,7 @@ class Logo extends Component {
 
   render() {
     return (
-      <img src={this._url} width="30" height="30" className="d-inline-block align-top mr-1" alt="" />
+      <img src={this._url} width="30" height="30" className="d-inline-block align-top mr-2" alt="" />
     );
   }
 
@@ -46,66 +71,5 @@ class Logo extends Component {
     } else {
       return logoImg30;
     }
-  }
-}
-
-class NavLang extends Component {
-  constructor(props) {
-    super(props);
-    this._onClick = this._onClick.bind(this);
-  }
-
-  render() {
-    const checked = this.props.lang === this.props.chrome.lang;
-    return (
-      <a className="dropdown-item" href="#" data-lang={this.props.lang} onClick={this._onClick}>
-        <RadioButton
-            name="header-ui-lang"
-            checked={checked}
-            onChange={() => {}}
-            text={this.props.name}
-          />
-      </a>
-    );
-  }
-
-  _onClick() {
-    this.dispatch('chrome:changelang', this.props.lang);
-  }
-}
-
-class Nav extends Component {
-  render() {
-    return (
-      <ul className="nav navbar-nav">
-        <li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle" href="#" id="nav-lang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            UI Language
-          </a>
-          <div className="dropdown-menu" aria-labelledby="nav-lang">
-            <NavLang lang="ja" name="日本語" {...this.props} />
-            <NavLang lang="en" name="English" {...this.props} />
-          </div>
-        </li>
-      </ul>
-    );
-  }
-}
-
-export default class Header extends Component {
-  render() {
-    return (
-      <header className="navbar navbar-dark bg-inverse bd-navbar">
-        <div className="container">
-          <nav>
-            <h1 className="navbar-brand mb-0">
-              <Logo {...this.props} />
-              IkaLog
-            </h1>
-            <Nav {...this.props} />
-          </nav>
-        </div>
-      </header>
-    );
   }
 }

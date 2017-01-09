@@ -26,7 +26,7 @@ import MainContent from './MainContent';
 export default class Content extends Component {
   render() {
     const classesMain = this._addPushClass([
-      'col-xs-12',
+      'col-12',
       'col-sm-7',
       'col-md-8',
       'col-lg-9',
@@ -74,7 +74,7 @@ export default class Content extends Component {
   _makeCounterSide(classes) {
     const ret = [];
     classes.forEach(className => {
-      const match = className.match(/^col-([a-z]{2})-(\d+)$/);
+      const match = className.match(/^col-(?:([a-z]{2})-)?(\d+)$/);
       if (!match) {
         return;
       }
@@ -97,8 +97,8 @@ class XsHelper extends Component {
 
   render() {
     return (
-      <div className="col-xs-12 hidden-sm-up">
-        <div className="text-xs-right mb-2">
+      <div className="col-12 hidden-sm-up">
+        <div className="text-right text-xs-right mb-2">
           <button className="btn btn-secondary" onClick={this._onClick}>
             <span className="fa fa-fw fa-angle-double-down" />
             {window.i18n.t('Menu', {ns: 'sidebar'})}

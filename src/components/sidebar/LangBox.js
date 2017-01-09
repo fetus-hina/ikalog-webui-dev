@@ -26,7 +26,7 @@ const t = text => window.i18n.t(text, {ns: 'sidebar'});
 export default class LangBox extends Component {
   render() {
     return (
-      <div className="card">
+      <div className="card mb-1">
         <div className="card-header">
           Language
         </div>

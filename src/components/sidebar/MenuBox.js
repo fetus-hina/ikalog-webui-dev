@@ -26,7 +26,7 @@ const t = text => window.i18n.t(text, {ns: 'sidebar'});
 export default class MenuBox extends Component {
   render() {
     return (
-      <div className="card" id="menu">
+      <div className="card mb-1" id="menu">
         <div className="card-header hidden-sm-up">
           {t('Menu')}
         </div>
@@ -42,7 +42,7 @@ export default class MenuBox extends Component {
 class Buttons extends Component {
   render() {
     return (
-      <div className="btn-group-vertical btn-block mb-1">
+      <div className="btn-group-vertical btn-block mb-2">
         <Button text="Preview" target="preview" {...this.props} />
         <Button text="Video Input" target="input" {...this.props} />
         <Button text="Plugins" target="output" {...this.props} />
@@ -81,7 +81,7 @@ class Apply extends Component {
 
   render() {
     return (
-      <div className="text-xs-right">
+      <div className="text-right text-xs-right">
         <button type="button" className="btn btn-outline-primary" onClick={this._onClick}>
           <span className="fa fa-check fa-fw"/>
           {t('Apply')}

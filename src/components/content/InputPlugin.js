@@ -23,7 +23,7 @@ import { Component } from 'flumpt';
 import { WrappedRadioButton, WrappedCheckbox, LabeledInput } from '../elements';
 
 const RADIO_NAME = 'radio-9964c174-5d60-485a-b75d-ec15c80609f8';
-const INDENT = 'push-xs-1 col-xs-11';
+const INDENT = 'offset-1 col-11';
 
 const t = text => window.i18n.t(text, {ns: 'input'});
 

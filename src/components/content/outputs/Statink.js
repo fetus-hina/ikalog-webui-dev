@@ -22,7 +22,7 @@ import React from 'react';
 import { Component } from 'flumpt';
 import { Checkbox, LabeledInput, RadioButton, WrappedCheckbox, WrappedRadioButton } from '../../elements';
 
-const INDENT = 'push-xs-1 col-xs-11';
+const INDENT = 'offset-1 col-11';
 const t = (text) => window.i18n.t(text, {ns: 'output-statink'});
 
 export default class Twitter extends Component {

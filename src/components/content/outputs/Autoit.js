@@ -22,7 +22,7 @@ import React from 'react';
 import { Component } from 'flumpt';
 import { LabeledInput, WrappedCheckbox } from '../../elements';
 
-const INDENT = 'push-xs-1 col-xs-11';
+const INDENT = 'offset-1 col-11';
 const t = (text) => window.i18n.t(text, {ns: 'output-autoit'});
 
 export default class Autoit extends Component {
