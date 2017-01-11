@@ -51,14 +51,12 @@ export default class App extends Flux {
 
     // 通信中に上にかぶせる
     this.on(":start-async-updating", () => {
-      console.log("start-updating");
       this.update(state => {
         state.chrome.lock = true;
         return state;
       });
     });
     this.on(":end-anync-updating", () => {
-      console.log("end-updating");
       this.update(state => {
         state.chrome.lock = false;
         return state;
@@ -75,7 +73,6 @@ export default class App extends Flux {
           contentType: 'application/json; charset=UTF-8',
           data: JSON.stringify(toIkaLogFormat(state)),
         };
-        console.log(postConf);
         $.post(postConf)
           .then(
             () => {
@@ -567,7 +564,6 @@ export default class App extends Flux {
         const input = (capture => {
           const ret = {
             driver: (cls => {
-              console.log(cls);
               switch (cls) {
                 case 'DirectShow':
                   return 'directshow';
