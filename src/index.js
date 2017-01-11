@@ -49,6 +49,7 @@ const app = new App({
       lang: 'unknown',
       content: 'preview',
       pluginTab: 'file',
+      preview: null,
       lock: false, // true if communicating
       fatalError: false,
     },

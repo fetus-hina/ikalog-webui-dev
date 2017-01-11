@@ -31,7 +31,10 @@ export default class Preview extends Component {
           <PreviewImage {...this.props} />
         </div>
         <div className="form-group">
-          <CaptureButton {...this.props} />
+          <div className="btn-group" role="group">
+            <CaptureButton {...this.props} />
+            <ReloadButton {...this.props} />
+          </div>
         </div>
       </div>
     );
@@ -40,11 +43,20 @@ export default class Preview extends Component {
 
 class PreviewImage extends Component {
   render() {
+    if (!this.props.chrome.preview) {
+        this.dispatch('preview:reload', null);
+        return null;
+    }
+
     const style = {
       width: "100%",
       height: "auto",
     };
-    return <img src="http://127.0.0.1:8888/api/v1/engine/preview" style={style} />;
+
+    const url = 'http://127.0.0.1:8888/api/v1/engine/preview?_=' + encodeURIComponent(this.props.chrome.preview);
+    return (
+      <img src={url} style={style} />
+    );
   }
 }
 
@@ -72,5 +84,27 @@ class CaptureButton extends Component {
 
   _onClick() {
     this.dispatch('input:takeScreenshot', 1);
+  }
+}
+
+class ReloadButton extends Component {
+  constructor(props) {
+    super(props);
+    this._onClick = this._onClick.bind(this);
+  }
+
+  render() {
+    return (
+      <button
+          className="btn btn-secondary"
+          onClick={this._onClick}
+      >
+        <span className="fa fa-fw fa-refresh" /> {t('Reload')}
+      </button>
+    );
+  }
+
+  _onClick() {
+    this.dispatch('preview:reload', null);
   }
 }

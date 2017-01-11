@@ -272,6 +272,14 @@ export default class App extends Flux {
       });
     });
 
+    // プレビュー更新要求
+    this.on('preview:reload', dummy => {
+      this.update(state => {
+        state.chrome.preview = Date.now();
+        return state;
+      });
+    });
+
     // CSV 設定変更
     this.on('output:changeCsvEnable', newState => {
       this.update(state => {
