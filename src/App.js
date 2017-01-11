@@ -22,6 +22,7 @@ import { Flux } from 'flumpt';
 import AppComponent from './components/App';
 import { setUILanguage } from './Utils';
 import endpoints from './endpoints';
+import { toIkaLogFormat } from './Config';
 
 export default class App extends Flux {
   subscribe() {
@@ -63,6 +64,63 @@ export default class App extends Flux {
         return state;
       });
     });
+
+    // 設定保存
+    this.on(':saveConfig', () => {
+      this.update(state => {
+        state.tasks.apply = 'progress';
+        
+        const postConf = {
+          url: endpoints.setConfig,
+          contentType: 'application/json; charset=UTF-8',
+          data: JSON.stringify(toIkaLogFormat(state)),
+        };
+        console.log(postConf);
+        $.post(postConf)
+          .then(
+            () => {
+              this.update(state => {
+                setTimeout(
+                  () => {
+                    if (window.notifications) {
+                      window.notifications.addNotification({
+                        title: window.i18n.t('Configuration', {ns: 'app'}),
+                        message: window.i18n.t('Configurations were applied correctly.', {ns: 'app'}),
+                        level: 'success',
+                        position: 'tr',
+                      });
+                    }
+                  },
+                  1
+                );
+                state.tasks.apply = null;
+                return state;
+              });
+            },
+            () => {
+              this.update(state => {
+                setTimeout(
+                  () => {
+                    if (window.notifications) {
+                      window.notifications.addNotification({
+                        title: window.i18n.t('Configuration', {ns: 'app'}),
+                        message: window.i18n.t('Failed to apply configurations.', {ns: 'app'}),
+                        level: 'error',
+                        position: 'tr',
+                      });
+                    }
+                  },
+                  1
+                );
+                state.tasks.apply = null;
+                return state;
+              });
+            }
+          );
+        return state;
+      });
+    });
+
 
     // 表示言語切り替え
     this.on("chrome:changelang", newLang => {
@@ -498,11 +556,37 @@ export default class App extends Flux {
         const screenshot = conf.Screenshot;
         const statink = conf.StatInk;
 
-        const input = {
-          driver: 'amarec',
-          device: null,
-          classes: json.configuration.Capture.read_only || {},
-        };
+        const input = (capture => {
+          const ret = {
+            driver: (cls => {
+              console.log(cls);
+              switch (cls) {
+                case 'DirectShow':
+                  return 'directshow';
+
+                case 'AVFoundationCapture':
+                  return 'avfoundation';
+
+                case 'CVCapture':
+                  return 'opencv';
+
+                default:
+                  return null;
+              }
+            })(capture.active_class),
+            device: capture.source ? { source: capture.source } : null,
+            classes: capture.read_only || {},
+          };
+
+          // DirectShow で source が AmaRec だったら amarec driver を選ぶ
+          if (ret.device &&
+              ret.driver === 'directshow' &&
+              ret.device.source === 'AmaRec Video Capture')
+          {
+            ret.driver = 'amarec';
+          }
+          return ret;
+        })(json.configuration.Capture);
 
         const output = {
           screenshot: {

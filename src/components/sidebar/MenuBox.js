@@ -80,17 +80,28 @@ class Apply extends Component {
   }
 
   render() {
-    return (
-      <div className="text-right text-xs-right">
-        <button type="button" className="btn btn-outline-primary" onClick={this._onClick}>
-          <span className="fa fa-check fa-fw"/>
-          {t('Apply')}
-        </button>
-      </div>
-    );
+    if (this.props.tasks.apply === null) {
+      return (
+        <div className="text-right text-xs-right">
+          <button type="button" className="btn btn-outline-primary" onClick={this._onClick}>
+            <span className="fa fa-check fa-fw"/>
+            {t('Apply')}
+          </button>
+        </div>
+      );
+    } else {
+      return (
+        <div className="text-right text-xs-right">
+          <button type="button" className="btn btn-outline-primary" disabled="disabled">
+            <span className="fa fa-fw fa-circle-o-notch fa-spin"/>
+            {t('Applying')}
+          </button>
+        </div>
+      );
+    }
   }
 
   _onClick() {
-    alert('Not implemented yet');
+    this.dispatch(':saveConfig', this.props.target);
   }
 }

@@ -41,6 +41,7 @@ const app = new App({
   },
   initialState: {
     tasks: {
+      apply: null,
       screenshot: null,
     },
     chrome: {
